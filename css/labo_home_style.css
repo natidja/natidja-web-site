@@ -350,7 +350,7 @@ section {
 }
 
 .sub-header-mobile-2 {
-    background: #fff;
+    background: #393939;
     padding: 15px;
 }
 
@@ -363,7 +363,7 @@ section {
 }
 
 .sub-header-mobile-2 .header__tool .account-wrap .account-item--style2 .content a {
-    color: #333;
+    color: rgb(204, 204, 204);
 }
 
 .header-desktop3 {
