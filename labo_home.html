@@ -21,15 +21,6 @@
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
-    <!-- Vendor CSS-->
-    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
     <!-- Main CSS-->
     <link href="css/labo_home_style.css" rel="stylesheet" media="all">
 
@@ -41,7 +32,7 @@
         <header class="header-desktop3 d-none d-lg-block">
             <div class="section__content section__content--p35">
                 <div class="header3-wrap">
-                    <div class="header__logo">
+                    <div class="header__logo" style="margin-left:25px;">
                         <a href="#">
                             <img src="images/icon/logo-white.png" alt="CoolAdmin" />
                         </a>
@@ -155,7 +146,7 @@
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="statistic__item statistic__item--red">
-                                <h2 class="number">$1,060,386</h2>
+                                <h2 class="number">1,060,386</h2>
                                 <span class="desc">CAS POSITIVE</span>
                             </div>
                         </div>
@@ -185,33 +176,34 @@
                                 <table class="table table-data2">
                                     <thead>
                                         <tr>
-                                            <th>name</th>
-                                            <th>email</th>
-                                            <th>description</th>
-                                            <th>date</th>
-                                            <th>status</th>
-                                            <th>price</th>
+                                            <th>nom</th>
+                                            <th>prenom</th>
+                                            <th>sexe</th>
+                                            <th>date de naissance</th>
+                                            <th>resultat</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr class="tr-shadow">
-                                            <td>Lori Lynch</td>
+                                            <td>Lori</td>
                                             <td>
-                                                <span class="block-email">lori@example.com</span>
+                                                Lynch
                                             </td>
-                                            <td class="desc">Samsung S8 Black</td>
-                                            <td>2018-09-27 02:12</td>
+                                            <td class="desc">homme</td>
+                                            <td>2018-09-27</td>
                                             <td>
-                                                <span class="status--process">Processed</span>
+                                                <span class="status--waiting">en attente</span>
                                             </td>
-                                            <td>$679.00</td>
                                             <td>
                                                 <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Ajouter le résultat">
+                                                        <i class="zmdi zmdi-plus-circle"></i>
+                                                    </button>
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Éditer">
                                                         <i class="zmdi zmdi-edit"></i>
                                                     </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
                                                         <i class="zmdi zmdi-delete"></i>
                                                     </button>
                                                 </div>
@@ -219,22 +211,21 @@
                                         </tr>
                                         <tr class="spacer"></tr>
                                         <tr class="tr-shadow">
-                                            <td>Lori Lynch</td>
+                                            <td>Lori</td>
                                             <td>
-                                                <span class="block-email">john@example.com</span>
+                                                Lynch
                                             </td>
-                                            <td class="desc">iPhone X 64Gb Grey</td>
-                                            <td>2018-09-29 05:57</td>
+                                            <td class="desc">homme</td>
+                                            <td>2018-09-29</td>
                                             <td>
-                                                <span class="status--process">Processed</span>
+                                                <span class="status--process">négative</span>
                                             </td>
-                                            <td>$999.00</td>
                                             <td>
                                                 <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Éditer">
                                                         <i class="zmdi zmdi-edit"></i>
                                                     </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
                                                         <i class="zmdi zmdi-delete"></i>
                                                     </button>
                                                 </div>
@@ -242,22 +233,21 @@
                                         </tr>
                                         <tr class="spacer"></tr>
                                         <tr class="tr-shadow">
-                                            <td>Lori Lynch</td>
+                                            <td>Lori</td>
                                             <td>
-                                                <span class="block-email">lyn@example.com</span>
+                                                Lynch
                                             </td>
-                                            <td class="desc">iPhone X 256Gb Black</td>
-                                            <td>2018-09-25 19:03</td>
+                                            <td class="desc">homme</td>
+                                            <td>2018-09-25</td>
                                             <td>
-                                                <span class="status--denied">Denied</span>
+                                                <span class="status--denied">positive</span>
                                             </td>
-                                            <td>$1199.00</td>
                                             <td>
                                                 <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Éditer">
                                                         <i class="zmdi zmdi-edit"></i>
                                                     </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
                                                         <i class="zmdi zmdi-delete"></i>
                                                     </button>
                                                 </div>
@@ -265,22 +255,21 @@
                                         </tr>
                                         <tr class="spacer"></tr>
                                         <tr class="tr-shadow">
-                                            <td>Lori Lynch</td>
+                                            <td>Lori</td>
                                             <td>
-                                                <span class="block-email">doe@example.com</span>
+                                                Lynch
                                             </td>
-                                            <td class="desc">Camera C430W 4k</td>
-                                            <td>2018-09-24 19:10</td>
+                                            <td class="desc">homme</td>
+                                            <td>2018-09-24</td>
                                             <td>
-                                                <span class="status--process">Processed</span>
+                                                <span class="status--process">négative</span>
                                             </td>
-                                            <td>$699.00</td>
                                             <td>
                                                 <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Éditer">
                                                         <i class="zmdi zmdi-edit"></i>
                                                     </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
                                                         <i class="zmdi zmdi-delete"></i>
                                                     </button>
                                                 </div>
