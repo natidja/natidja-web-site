@@ -52,34 +52,8 @@ a {
     -moz-transition: all 0.4s;
 }
 
-a:focus {
-    outline: none !important;
-}
-
-a:hover {
-    text-decoration: none;
-    color: #4169e1;
-}
-
 
 /*---------------------------------------------*/
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0px;
-}
-
-p {
-    font-family: Poppins-Regular;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #666666;
-    margin: 0px;
-}
 
 ul,
 li {
@@ -103,34 +77,6 @@ textarea {
 textarea:focus,
 input:focus {
     border-color: transparent !important;
-}
-
-input:focus::-webkit-input-placeholder {
-    color: transparent;
-}
-
-input:focus:-moz-placeholder {
-    color: transparent;
-}
-
-input:focus::-moz-placeholder {
-    color: transparent;
-}
-
-input:focus:-ms-input-placeholder {
-    color: transparent;
-}
-
-textarea:focus::-webkit-input-placeholder {
-    color: transparent;
-}
-
-textarea:focus:-moz-placeholder {
-    color: transparent;
-}
-
-textarea:focus::-moz-placeholder {
-    color: transparent;
 }
 
 textarea:focus:-ms-input-placeholder {
@@ -270,7 +216,7 @@ iframe {
 .login100-form-title {
     font-family: Poppins-Bold;
     font-size: 24px;
-    color: #4169e1;
+    color: #333333;
     line-height: 1.2;
     text-align: center;
     width: 100%;
