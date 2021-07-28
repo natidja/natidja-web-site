@@ -1,0 +1,32 @@
+<tr class="tr-shadow">
+                                            <td>Lori</td>
+                                            <td>
+                                                Lynch
+                                            </td>
+                                            <td class="desc">homme</td>
+                                            <td>2018-09-27</td>
+                                            <td>
+                                                <span class="status--waiting">en attente</span>
+                                            </td>
+                                            <td>
+                                                <div class="table-data-feature">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Ajouter le résultat">
+                                                        <i class="zmdi zmdi-plus-circle"></i>
+                                                    </button>
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Éditer">
+                                                        <i class="zmdi zmdi-edit"></i>
+                                                    </button>
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                                                        <i class="zmdi zmdi-delete"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="spacer"></tr>
+
+
+
+                                        INSERT INTO `patient`(`id_p`, `pseudo`, `mdp`, `nom_p`, `prenom_p`, `date_naissance`, `resultat`, `sexe`) VALUES (2,"houssem","denuab","babadermel","houssem","2002/05/25","en attente","femme");
+INSERT INTO `patient`(`id_p`, `pseudo`, `mdp`, `nom_p`, `prenom_p`, `date_naissance`, `resultat`, `sexe`) VALUES (3,"khalilzu","denuab","sayah","khalil","2002/05/25","en attente","homme");
+INSERT INTO `patient`(`id_p`, `pseudo`, `mdp`, `nom_p`, `prenom_p`, `date_naissance`, `resultat`, `sexe`) VALUES (4,"radiaheue","denuab","bekhtaoui","radia","2002/05/25","positif","femme");
+INSERT INTO `patient`(`id_p`, `pseudo`, `mdp`, `nom_p`, `prenom_p`, `date_naissance`, `resultat`, `sexe`) VALUES (5,"issamou","denuab","ziani","issam","2002/05/25","negatif","femme");
