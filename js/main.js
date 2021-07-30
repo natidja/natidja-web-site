@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
     // USE STRICT
     "use strict";
 
@@ -17,7 +17,7 @@
                         label: 'Dataset',
                         backgroundColor: 'rgba(255,255,255,.1)',
                         borderColor: 'rgba(255,255,255,.55)',
-                    }, ]
+                    },]
                 },
                 options: {
                     maintainAspectRatio: true,
@@ -83,7 +83,7 @@
                         label: 'Dataset',
                         backgroundColor: 'transparent',
                         borderColor: 'rgba(255,255,255,.55)',
-                    }, ]
+                    },]
                 },
                 options: {
 
@@ -154,7 +154,7 @@
                         label: 'Dataset',
                         backgroundColor: 'transparent',
                         borderColor: 'rgba(255,255,255,.55)',
-                    }, ]
+                    },]
                 },
                 options: {
 
@@ -261,14 +261,14 @@
                 data: {
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', ''],
                     datasets: [{
-                            label: 'My First dataset',
-                            backgroundColor: brandService,
-                            borderColor: 'transparent',
-                            pointHoverBackgroundColor: '#fff',
-                            borderWidth: 0,
-                            data: data1
+                        label: 'My First dataset',
+                        backgroundColor: brandService,
+                        borderColor: 'transparent',
+                        pointHoverBackgroundColor: '#fff',
+                        borderWidth: 0,
+                        data: data1
 
-                        },
+                    },
                         {
                             label: 'My Second dataset',
                             backgroundColor: brandProduct,
@@ -385,7 +385,6 @@
     }
 
 
-
     try {
 
         // Recent Report 2
@@ -405,14 +404,14 @@
                 data: {
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', ''],
                     datasets: [{
-                            label: 'My First dataset',
-                            backgroundColor: brandService2,
-                            borderColor: bd_brandService2,
-                            pointHoverBackgroundColor: '#fff',
-                            borderWidth: 0,
-                            data: data3
+                        label: 'My First dataset',
+                        backgroundColor: brandService2,
+                        borderColor: bd_brandService2,
+                        pointHoverBackgroundColor: '#fff',
+                        borderWidth: 0,
+                        data: data3
 
-                        },
+                    },
                         {
                             label: 'My Second dataset',
                             backgroundColor: brandProduct2,
@@ -498,14 +497,14 @@
                 data: {
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', ''],
                     datasets: [{
-                            label: 'My First dataset',
-                            backgroundColor: brandService3,
-                            borderColor: bd_brandService3,
-                            pointHoverBackgroundColor: '#fff',
-                            borderWidth: 0,
-                            data: data5,
-                            pointBackgroundColor: bd_brandService3
-                        },
+                        label: 'My First dataset',
+                        backgroundColor: brandService3,
+                        borderColor: bd_brandService3,
+                        pointHoverBackgroundColor: '#fff',
+                        borderWidth: 0,
+                        data: data5,
+                        pointBackgroundColor: bd_brandService3
+                    },
                         {
                             label: 'My Second dataset',
                             backgroundColor: brandProduct3,
@@ -793,7 +792,7 @@
                         pointRadius: 5,
                         pointBorderColor: 'transparent',
                         pointBackgroundColor: 'rgba(0,103,255,0.5)',
-                    }, ]
+                    },]
                 },
                 options: {
                     responsive: true,
@@ -872,13 +871,13 @@
                 data: {
                     labels: ["January", "February", "March", "April", "May", "June", "July"],
                     datasets: [{
-                            label: "My First dataset",
-                            data: [65, 59, 80, 81, 56, 55, 40],
-                            borderColor: "rgba(0, 123, 255, 0.9)",
-                            borderWidth: "0",
-                            backgroundColor: "rgba(0, 123, 255, 0.5)",
-                            fontFamily: "Poppins"
-                        },
+                        label: "My First dataset",
+                        data: [65, 59, 80, 81, 56, 55, 40],
+                        borderColor: "rgba(0, 123, 255, 0.9)",
+                        borderWidth: "0",
+                        backgroundColor: "rgba(0, 123, 255, 0.5)",
+                        fontFamily: "Poppins"
+                    },
                         {
                             label: "My Second dataset",
                             data: [28, 48, 40, 19, 86, 27, 90],
@@ -935,12 +934,12 @@
                     ],
                     defaultFontFamily: 'Poppins',
                     datasets: [{
-                            label: "My First dataset",
-                            data: [65, 59, 66, 45, 56, 55, 40],
-                            borderColor: "rgba(0, 123, 255, 0.6)",
-                            borderWidth: "1",
-                            backgroundColor: "rgba(0, 123, 255, 0.4)"
-                        },
+                        label: "My First dataset",
+                        data: [65, 59, 66, 45, 56, 55, 40],
+                        borderColor: "rgba(0, 123, 255, 0.6)",
+                        borderWidth: "1",
+                        backgroundColor: "rgba(0, 123, 255, 0.4)"
+                    },
                         {
                             label: "My Second dataset",
                             data: [28, 12, 40, 19, 63, 27, 87],
@@ -984,12 +983,12 @@
                     labels: ["January", "February", "March", "April", "May", "June", "July"],
                     defaultFontFamily: "Poppins",
                     datasets: [{
-                            label: "My First dataset",
-                            borderColor: "rgba(0,0,0,.09)",
-                            borderWidth: "1",
-                            backgroundColor: "rgba(0,0,0,.07)",
-                            data: [22, 44, 67, 43, 76, 45, 12]
-                        },
+                        label: "My First dataset",
+                        borderColor: "rgba(0,0,0,.09)",
+                        borderWidth: "1",
+                        backgroundColor: "rgba(0,0,0,.07)",
+                        data: [22, 44, 67, 43, 76, 45, 12]
+                    },
                         {
                             label: "My Second dataset",
                             borderColor: "rgba(0, 123, 255, 0.9)",
@@ -1237,12 +1236,11 @@
 })(jQuery);
 
 
-
-(function($) {
+(function ($) {
     // USE STRICT
     "use strict";
     var navbars = ['header', 'aside'];
-    var  hrefSelector  =  'a:not([target="_blank"]):not([href^="#"]):not([class^="chosen-single"])';
+    var hrefSelector = 'a:not([target="_blank"]):not([href^="#"]):not([class^="chosen-single"])';
     var linkElement = navbars.map(element => element + ' ' + hrefSelector).join(', ');
     $(".animsition").animsition({
         inClass: 'fade-in',
@@ -1261,14 +1259,14 @@
         overlay: false,
         overlayClass: 'animsition-overlay-slide',
         overlayParentElement: 'html',
-        transition: function(url) {
+        transition: function (url) {
             window.location.href = url;
         }
     });
 
 
 })(jQuery);
-(function($) {
+(function ($) {
     // USE STRICT
     "use strict";
 
@@ -1334,7 +1332,7 @@
                     fl: '#001BFF',
                     or: '#001BFF'
                 },
-                onRegionClick: function(event, code, region) {
+                onRegionClick: function (event, code, region) {
                     event.preventDefault();
                 }
             });
@@ -1354,7 +1352,7 @@
                 color: '#007BFF',
                 borderColor: '#fff',
                 backgroundColor: '#fff',
-                onRegionClick: function(element, code, region) {
+                onRegionClick: function (element, code, region) {
                     var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
 
                     alert(message);
@@ -1418,7 +1416,7 @@
                 color: '#007BFF',
                 borderColor: '#fff',
                 backgroundColor: '#fff',
-                onRegionClick: function(element, code, region) {
+                onRegionClick: function (element, code, region) {
                     var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
                     alert(message);
                 }
@@ -1429,22 +1427,22 @@
         console.log(error);
     }
 })(jQuery);
-(function($) {
+(function ($) {
     // Use Strict
     "use strict";
     try {
         var progressbarSimple = $('.js-progressbar-simple');
-        progressbarSimple.each(function() {
+        progressbarSimple.each(function () {
             var that = $(this);
             var executed = false;
-            $(window).on('load', function() {
+            $(window).on('load', function () {
 
-                that.waypoint(function() {
+                that.waypoint(function () {
                     if (!executed) {
                         executed = true;
                         /*progress bar*/
                         that.progressbar({
-                            update: function(current_percentage, $this) {
+                            update: function (current_percentage, $this) {
                                 $this.find('.js-value').html(current_percentage + '%');
                             }
                         });
@@ -1459,7 +1457,7 @@
         console.log(err);
     }
 })(jQuery);
-(function($) {
+(function ($) {
     // USE STRICT
     "use strict";
 
@@ -1481,14 +1479,14 @@
     }
 
 })(jQuery);
-(function($) {
+(function ($) {
     // USE STRICT
     "use strict";
 
     // Select 2
     try {
 
-        $(".js-select2").each(function() {
+        $(".js-select2").each(function () {
             $(this).select2({
                 minimumResultsForSearch: 20,
                 dropdownParent: $(this).next('.dropDownSelect2')
@@ -1501,7 +1499,7 @@
 
 
 })(jQuery);
-(function($) {
+(function ($) {
     // USE STRICT
     "use strict";
 
@@ -1511,7 +1509,7 @@
         var sub_menu_is_showed = -1;
 
         for (var i = 0; i < menu.length; i++) {
-            $(menu[i]).on('click', function(e) {
+            $(menu[i]).on('click', function (e) {
                 e.preventDefault();
                 $('.js-right-sidebar').removeClass("show-sidebar");
                 if (jQuery.inArray(this, menu) == sub_menu_is_showed) {
@@ -1526,11 +1524,11 @@
                 }
             });
         }
-        $(".js-item-menu, .js-dropdown").click(function(event) {
+        $(".js-item-menu, .js-dropdown").click(function (event) {
             event.stopPropagation();
         });
 
-        $("body,html").on("click", function() {
+        $("body,html").on("click", function () {
             for (var i = 0; i < menu.length; i++) {
                 menu[i].classList.remove("show-dropdown");
             }
@@ -1546,7 +1544,7 @@
     var right_sidebar = $('.js-right-sidebar');
     var sidebar_btn = $('.js-sidebar-btn');
 
-    sidebar_btn.on('click', function(e) {
+    sidebar_btn.on('click', function (e) {
         e.preventDefault();
         for (var i = 0; i < menu.length; i++) {
             menu[i].classList.remove("show-dropdown");
@@ -1555,11 +1553,11 @@
         right_sidebar.toggleClass("show-sidebar");
     });
 
-    $(".js-right-sidebar, .js-sidebar-btn").click(function(event) {
+    $(".js-right-sidebar, .js-sidebar-btn").click(function (event) {
         event.stopPropagation();
     });
 
-    $("body,html").on("click", function() {
+    $("body,html").on("click", function () {
         right_sidebar.removeClass("show-sidebar");
 
     });
@@ -1568,9 +1566,9 @@
     // Sublist Sidebar
     try {
         var arrow = $('.js-arrow');
-        arrow.each(function() {
+        arrow.each(function () {
             var that = $(this);
-            that.on('click', function(e) {
+            that.on('click', function (e) {
                 e.preventDefault();
                 that.find(".arrow").toggleClass("up");
                 that.toggleClass("open");
@@ -1585,11 +1583,11 @@
 
     try {
         // Hamburger Menu
-        $('.hamburger').on('click', function() {
+        $('.hamburger').on('click', function () {
             $(this).toggleClass('is-active');
             $('.navbar-mobile').slideToggle('500');
         });
-        $('.navbar-mobile__list li.has-dropdown > a').on('click', function() {
+        $('.navbar-mobile__list li.has-dropdown > a').on('click', function () {
             var dropdown = $(this).siblings('ul.navbar-mobile__dropdown');
             $(this).toggleClass('active');
             $(dropdown).slideToggle('500');
@@ -1599,7 +1597,7 @@
         console.log(error);
     }
 })(jQuery);
-(function($) {
+(function ($) {
     // USE STRICT
     "use strict";
 
@@ -1607,12 +1605,12 @@
     try {
         var list_load = $('.js-list-load');
         if (list_load[0]) {
-            list_load.each(function() {
+            list_load.each(function () {
                 var that = $(this);
                 that.find('.js-load-item').hide();
                 var load_btn = that.find('.js-load-btn');
-                load_btn.on('click', function(e) {
-                    $(this).text("Loading...").delay(1500).queue(function(next) {
+                load_btn.on('click', function (e) {
+                    $(this).text("Loading...").delay(1500).queue(function (next) {
                         $(this).hide();
                         that.find(".js-load-item").fadeToggle("slow", 'swing');
                     });
@@ -1626,7 +1624,7 @@
     }
 
 })(jQuery);
-(function($) {
+(function ($) {
     // USE STRICT
     "use strict";
 
@@ -1642,10 +1640,10 @@
     try {
         var inbox_wrap = $('.js-inbox');
         var message = $('.au-message__item');
-        message.each(function() {
+        message.each(function () {
             var that = $(this);
 
-            that.on('click', function() {
+            that.on('click', function () {
                 $(this).parent().parent().parent().toggleClass('show-chat-box');
             });
         });

@@ -21,7 +21,7 @@
                         while($tuple = $result->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
                             $nom = $tuple['nom_labo'];
                             $wilaya = $tuple['wilaya'];
-                            
+                            $email = $tuple['adresse_email'];
                         }
 
                         $req_sql3 = "SELECT count(*) as 'nbr' from test where resultat = 'positif'";
@@ -31,8 +31,6 @@
                     $positif = $tup['nbr'];
                 }
 
-
-
                 $req_sql4 = "SELECT count(*) as 'nbr' from test where resultat = 'negatif'";
                 $res = $conn->query($req_sql4);
 
@@ -41,7 +39,7 @@
                 }
 
 
-                $req_sql5 = "SELECT count(*) as 'nbr' from test where resultat = 'attente'";
+                $req_sql5 = "SELECT count(*) as 'nbr' from test where resultat = 'en attente'";
                 $res = $conn->query($req_sql5);
 
                 while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
@@ -210,7 +208,7 @@
                              echo $negatif; 
                 
                              ?></h2>
-                                <span class="desc">CAS NÉGATIVE</span>
+                                <span class="desc">CAS NÉGATIF</span>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-3">
@@ -231,7 +229,7 @@
                              ?>
                              </h2>
                              
-                                <span class="desc">CAS POSITIVE</span>
+                                <span class="desc">CAS POSITIF</span>
                             </div>
                         </div>
                     </div>
@@ -251,11 +249,12 @@
                                             <i class="zmdi zmdi-search"></i>
                                         </button>
                                 </form>
+                                <a href="creat.php" alt='Broken Link ' style="color: white;">
                                 <button class="au-btn au-btn-icon au-btn--green au-btn--small ">
-                                    <i class="zmdi zmdi-plus"></i><a href="creat.php" alt='Broken Link ' style="color: white;">Ajouter</a></button>
+                                    <i class="zmdi zmdi-plus"></i>Ajouter</button></a>
                             </div>
                             <div class="table-responsive table-responsive-data2">
-                                <table class="table table-data2">
+                                <table class="table table-data2" id="data_table"  onload="resultat_color();">
                                     <thead>
                                         <tr>
                                             <th>nom</th>
@@ -263,10 +262,10 @@
                                             <th>sexe</th>
                                             <th>date de naissance</th>
                                             <th>resultat</th>
-                                            <th></th>
+                                            <th ></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody >
                                     <?php 
                                     
 
@@ -278,39 +277,64 @@
                             $resultat_p = $tuple['resultat'];
 
                             echo '<tr class="tr-shadow">
-                            <td>'.$nom_p.'</td><td>'
-                                .$prenom_p.
-                            '</td>
-                            <td class="desc">'.$sexe.'</td>
-                            <td>'.$date_naissance.'</td>
-                            <td>
-                                <span class="status--waiting">'.$resultat_p.'</span>
-                            </td>
-                            <td>
+                            <td>'.$nom_p.'</td>
+                            <td>'.$prenom_p.'</td>';
+                            if($sexe=="homme") echo'<td class="desc" style="color:blue">'.$sexe.'</td>';
+                            else  echo'<td class="desc" style="color:#E05297">'.$sexe.'</td>';
+
+                            
+                            echo'<td>'.$date_naissance.'</td>';
+                            
+                            if($resultat_p=="positif"){
+                                echo'
+                                <td id="result">
+                                    <span class="status--waiting" style="color:red" ><b>'.$resultat_p.'</b></span>
+                                </td>';
+                            }
+                            else if($resultat_p=="negatif"){
+                                echo'
+                                <td id="result" >
+                                    <span class="status--waiting" style="color:green"><b>'.$resultat_p.'</b></span>
+                                </td>';
+                            }
+                            else if($resultat_p=="en attente"){
+                                echo'
+                                <td id="result" >
+                                    <span class="status--waiting" style="color:orange"><b>'.$resultat_p.'</b></span>
+                                </td>';
+                            }else{
+                                echo'
+                                <td id="result" style="color:black">
+                                    <span class="status--waiting" ><b>'.$resultat_p.'</b></span>
+                                </td>';
+                            }
+                            
+                                echo'<td>
                                 <div class="table-data-feature">
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Ajouter le résultat">
-                                        <i class="zmdi zmdi-plus-circle"></i>
-                                    </button>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Éditer">
-                                        <i class="zmdi zmdi-edit"></i>
-                                    </button>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
-                                        <i class="zmdi zmdi-delete"></i>
-                                        
-                                    </button>
+        
+                                    <button type="submit" name="edit_btn" class="item" data-toggle="tooltip" 
+                                        data-placement="top" title="Éditer" style="margin-right: 5px;"> 
+                                    <i class="zmdi zmdi-edit"></i> </button> 
+
+                                    <form action="supprimer.php" method="POST">
+                                    <input type="hidden" name="delete_nomp" value="'.$tuple['id_test'].'">
+                                    <button type="submit" name="delete_btn " class="item" data-toggle="tooltip" data-placement="top" title="supprimer"> 
+                                    <i class="zmdi zmdi-delete"></i> </button> 
+                                    </form>
                                 </div>
                             </td>
                         </tr>
                         <tr class="spacer"></tr>';
-                            
                         } ?>
                                     </tbody>
                                 </table>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
             <!-- END DATA TABLE-->
 
 
@@ -324,27 +348,23 @@
         <script src="vendor/bootstrap-4.1/popper.min.js"></script>
         <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
         <!-- Vendor JS       -->
-        <script src="vendor/slick/slick.min.js">
-        </script>
+        <script src="vendor/slick/slick.min.js"></script>
         <script src="vendor/wow/wow.min.js"></script>
         <script src="vendor/animsition/animsition.min.js"></script>
-        <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-        </script>
+        <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
         <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-        <script src="vendor/counter-up/jquery.counterup.min.js">
-        </script>
+        <script src="vendor/counter-up/jquery.counterup.min.js"></script>
         <script src="vendor/circle-progress/circle-progress.min.js"></script>
         <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
         <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-        <script src="vendor/select2/select2.min.js">
-        </script>
+        <script src="vendor/select2/select2.min.js"></script>
 
         <!-- Main JS-->
         <script src="js/main.js"></script>
+
+
 
 </body>
 
 </html>
 <!-- end document-->
-message.txt
-17 KB

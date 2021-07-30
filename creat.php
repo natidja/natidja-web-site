@@ -75,13 +75,14 @@
                                         <span class="email">johndoe@example.com</span>
                                     </div>
                                 </div>
+
                                 <div class="account-dropdown__body">
                                     <div class="account-dropdown__footer">
-                                        <a href='labo_home.php' Broken Link ' style="text-decoration: none;">
+                                        <a href='labo_home.php' Broken Link style="text-decoration: none;">
                                             <i class="zmdi zmdi-home"></i>Home</a>
                                     </div>
                                     <div class="account-dropdown__footer">
-                                        <a href='login_labo.php ' Broken Link ' style="text-decoration: none;">
+                                        <a href='login_labo.php ' Broken Link style="text-decoration: none;">
                                             <i class="zmdi zmdi-power"></i>Déconnecter</a>
                                     </div>
                                 </div>
@@ -98,18 +99,136 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Nouveau patient</h2>
-                    <form method="POST" action="insert_test.php">
+                    <?php
+                        if(array_key_exists('creat-btn', $_POST)) {
+                            creat();
+                        }else{ }
+
+                        function creat() {
+                            date_default_timezone_set('Africa/Algiers');
+
+                            $nom_bdd = "natidja";
+                            $server = "localhost";
+                            $user = "root";
+                            $password = "";
+
+                            $nom_p = $_POST["nom_p"];
+                            $prenom_p = $_POST["prenom_p"];
+                            $date_naissance = $_POST["date_naissance"];
+                            $sexe = $_POST["sexe"];
+
+                                if(!empty($_POST['subject'])) {
+                                    $type = $_POST['subject'];
+                                    if($type == "antigénique"){
+                                    $type = "antigénique";
+                                    }
+                                    elseif($type == "virologique"){
+                                        $type = "virologique";
+                                    }
+                                    else{
+                                        $type = "sérologique";
+                                    }
+                                } else {
+                                    $type="";
+                                    }
+
+                                if(!empty($_POST['resultat'])) {
+                                    $resultat = $_POST['resultat'];
+                                    if($resultat == "en attente"){
+                                    $resultat = "en attente";
+                                    }
+
+                                    elseif($resultat == "negatif"){
+                                        $resultat = "negatif";
+                                    }
+
+                                    else{
+                                        $resultat = "positif";
+                                    }
+                                } else {
+                                    $resultat="";
+                                }
+
+
+                                if($sexe == "H"){
+                                    $sexe = "homme";
+                                } else{
+                                    $sexe = "femme";
+                                }
+                                
+                                if($nom_p==''||$prenom_p==''||$date_naissance==''
+                                ||$sexe==''||$type==''||$resultat==''){
+                                    echo'<h4 style="color:red; margin-bottom: 15px;">veuillez remplir le formulaire correctement svp!</h4>';
+                                }
+
+                                else{
+                                    try {
+                                    //Création d'une connexion avec le SGBD
+                                    $connexion = new PDO("mysql:host=$server;dbname=$nom_bdd", $user, $password);
+
+
+                                    //Insertion d'un nouvel étudiant
+                                    $requete_sql = "INSERT INTO test (nom_p, prenom_p, date_naissance, type, resultat, sexe) VALUES (:nom_p, :prenom_p, :date_naissance, :type, :resultat, :sexe)";
+
+                                    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                                    $p = $connexion->prepare($requete_sql);
+                                    $p->bindParam(":nom_p", $nom_p);
+                                    $p->bindParam(":prenom_p", $prenom_p);
+                                    $p->bindParam(":date_naissance", $date_naissance);
+                                    $p->bindParam(":type", $type);
+                                    $p->bindParam(":resultat", $resultat);
+                                    $p->bindParam(":sexe", $sexe);
+                                    $p->execute();
+
+                                    $pseudo= $nom_p ."_". $prenom_p."";
+                                    function passgen1($nbChar) {
+                                        $chaine ="mnoTUzS5678kVvwxy9WXYZRNCDEFrslq41GtuaHIJKpOPQA23LcdefghiBMbj0";
+                                        srand((double)microtime()*1000000);
+                                        $pass = '';
+                                        for($i=0; $i<$nbChar; $i++){
+                                            $pass .= $chaine[rand()%strlen($chaine)];
+                                        }
+                                        return $pass;
+                                    }
+
+                                    $mdp= passgen1(8);
+                                    $req_sql="insert into patient(nom_p, prenom_p, date_naissance, resultat, id_test,sexe) SELECT nom_p, prenom_p, date_naissance, resultat, id_test, sexe FROM test where nom_p='$nom_p'and prenom_p='$prenom_p' ";
+                                    $connexion->exec($req_sql);
+                                    $requete_sql2 ="UPDATE patient SET pseudo = '$pseudo', mdp='$mdp' WHERE nom_p='$nom_p'and prenom_p='$prenom_p'";
+                                    $connexion->exec($requete_sql2);
+
+
+                                    $req_sql3 = "SELECT count(*) as 'nbr' from test where resultat = 'positive'";
+                                    $res = $connexion->query($req_sql3);
+
+                                    while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
+                                        $positif = $tup['nbr'];
+                                    }
+                                    //Clôture de la connexion
+                                    echo '<script language="Javascript">
+                                    document.location.replace("insert_test.php");
+                                    </script>';
+                                    $connexion = null;
+
+                                    } catch (PDOException $e) {
+                                        echo "Erreur ! " . $e->getMessage() . "<br/>";
+                                    }
+                                }
+                        }
+                    ?>
+                    <form method="POST" name="formSaisie" >
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">NOM</label>
-                                    <input class="input--style-4" type="text" name="nom_p" required>
+                                    <input class="input--style-4" type="text" name="nom_p" id="nom_p">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">PRENOM</label>
-                                    <input class="input--style-4" type="text" name="prenom_p" required>
+                                    <input class="input--style-4" type="text" name="prenom_p" id="prenom_p">
                                 </div>
                             </div>
                         </div>
@@ -117,10 +236,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">DATE DE NAISSANCE</label>
-                                    <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="date_naissance" required>
-                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                                    </div>
+                                        <input class="input--style-4 " type="date" name="date_naissance" id="date_naissance">
                                 </div>
                             </div>
                             <div class="col-2">
@@ -142,11 +258,11 @@
                         <div class="input-group">
                             <label class="label">Type de test</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="subject" required>
-                                    <option disabled="disabled" selected="selected">Choisir une option</option>
-                                    <option id="antigénique">antigénique</option>
-                                    <option id="virologique">virologique</option>
-                                    <option id="sérologique">sérologique</option>
+                                <select name="subject" id="subject">
+                                    <option disabled="disabled" selected="selected"  >Choisir une option</option>
+                                    <option id="antigénique" >antigénique</option>
+                                    <option id="virologique" >virologique</option>
+                                    <option id="sérologique" >sérologique</option>
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
@@ -154,25 +270,35 @@
                         <div class="input-group">
                             <label class="label">résultat de test</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="resultat">
-                                <option disabled="disabled" selected="selected">Choisir une option</option>
-                                    <option id="attente">en attente...</option>
+                                <select name="resultat"  id="resultat">
+                                <option disabled="disabled" selected="selected" >Choisir une option</option>
+                                    <option id="attente">en attente</option>
                                     <option id="negatif">negatif</option>
                                     <option id="positif">positif</option>
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
                         </div>
+                        <p id="error_msg" style="color:red;"></p>
                         <div class="p-t-15">
-                        <button class="btn btn--radius-2 btn--blue" type="submit" onclick="myFunction()">
+                        <button class="btn btn--radius-2 btn--blue" type="submit" name="creat-btn" value="creat-btn">
                                 Créer
                             </button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
+    <div class="form-popup" id="myForm" style="display:none";>
+        <form  class="form-container">
+            <h2>formulaire remplit avec succes</h2><br><br>
+            <button type="submit" class="btn" onclick="window.print()">imprimer l'identifiant et le mot de passe du patient</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">fermer</button>
+        </form>
+    </div>
+                            
 
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -204,16 +330,8 @@
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
 
-    <script>
-        function myFunction() {
-        alert("Patient crée avec succès");
-        }
-    </script>
-
-
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>
 <!-- end document-->
-
