@@ -46,7 +46,7 @@
         <div class="section__content section__content--p35">
             <div class="header3-wrap">
                 <div class="header__logo">
-                    <a href="#">
+                    <a href="labo_home.php">
                         <img src="images/icon/logo-white.png" alt="CoolAdmin" />
                     </a>
                 </div>

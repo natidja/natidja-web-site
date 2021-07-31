@@ -1,216 +1,130 @@
-.card-4 {
-    background: #fff;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-    width: 40%;
-}
 
-.card-4 .card-body {
-    padding: 5px 5px;
-    padding-bottom: 5px;
-}
+/* ----- Header ----- */
 
-.result_card {
-    margin: auto;
-    width: 60%;
-    padding: 10px;
-    background: rgb(255, 255, 255);
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-    width: 80%;
-}
-
-.result_card .result_body {
-    padding: 5px 65px;
-    padding-bottom: 5px;
-}
-
-.logol {
-    width: 75px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-.main-container {
-    padding: 30px;
-}
-
-
-/* HEADING */
-
-.heading {
-    text-align: center;
-}
-
-.heading__title {
-    font-weight: 600;
-}
-
-.heading__credits {
-    margin: 10px 0px;
-    color: #888888;
-    font-size: 25px;
-    transition: all 0.5s;
-}
-
-.heading__link {
-    text-decoration: none;
-}
-
-.heading__credits .heading__link {
-    color: inherit;
-}
-
-
-/* CARDS */
-
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.card {
-    margin: 20px;
-    padding: 20px;
-    width: 500px;
-    min-height: 200px;
-    display: grid;
-    grid-template-rows: 20px 50px 1fr 50px;
-    border-radius: 10px;
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
-    transition: all 0.2s;
-}
-
-.card:hover {
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
-    transform: scale(1.01);
-}
-
-.card__link,
-.card__exit,
-.card__icon {
+.account-wrap {
     position: relative;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.9);
+    margin-right: 25px;
 }
 
-.card__link::after {
+.account-item {
+    cursor: pointer;
+}
+
+
+
+.account-item>.content {
+    margin-left: 45px;
+    padding: 9px 0;
+    padding-left: 12px;
+}
+
+.account-item>.content>a {
+    color: #333;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.account-item>.content>a:after {
+    font-family: "Material-Design-Iconic-Font";
+    font-weight: 500;
+    content: '\f2f9';
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.account-item>.content>a:hover {
+    color: #666;
+}
+
+
+.header-desktop3 {
+    background: #393939;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 76px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.header-desktop3 .section__content {
     position: absolute;
-    top: 25px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
     left: 0;
-    content: "";
-    width: 0%;
-    height: 3px;
-    background-color: rgba(255, 255, 255, 0.6);
-    transition: all 0.5s;
+    right: 0;
 }
 
-.card__link:hover::after {
-    width: 100%;
+.header3-wrap {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    position: relative;
 }
 
-.card__exit {
-    grid-row: 1/2;
-    justify-self: end;
+.header__logo {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    margin-left: 15px;
 }
 
-.card__icon {
-    grid-row: 2/3;
-    font-size: 30px;
-}
-
-.card__title {
-    grid-row: 3/4;
-    font-weight: 400;
-    color: #ffffff;
-}
-
-.card__apply {
-    grid-row: 4/5;
-    align-self: center;
+.header__tool {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 
-/* CARD BACKGROUNDS */
-
-.card-1 {
-    background: radial-gradient(#1fe4f5, #3fbafe);
+.account-item--style2 .content a {
+    font-size: 16px;
+    color: #ccc;
+    font-weight: 500;
 }
 
-
-/* RESPONSIVE */
-
-@media (max-width: 1600px) {
-    .cards {
-        justify-content: center;
-    }
-}
-p{
-  text-align: center;
-  font-size:2rem;
-  color:#cccccc;
-}
-.trans--grow{
-  -webkit-transition: width 1s ease-out; /* For Safari 3.1 to 6.0 */
-  transition: width 1s  ease-out;
-  width : 0%;
-}
-.grow{
-  width:100%;
-}
-.hr1{
-  margin-left:0;
-}
-.hr2{
-  margin-right:0;
-}
-hr{
-  margin-top: 20px;
-  padding: 2px 0;
-  border: none;
-  background-color: rgb(250, 150, 0);
-  letter-spacing: 5px;
+.account-item--style2 .content a:hover {
+    color: #fff;
 }
 
-/*Author*/
-footer{
-  position:absolute;
-  bottom:0;
-}
-div{
-  width:960px;
-}
-h1{
-  font-size:1.2rem;
-  text-align: center;
-  color:#39d1b4;
-}
-h1 a{
-  font-weight:300;
-  color:#39d1b4;
-  text-decoration:none;
-}
 
-h1 a:hover{
-  font-weight:300;
-  color:#2d9884;
-  text-decoration:none;
-}
 
