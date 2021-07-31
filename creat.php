@@ -98,7 +98,7 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Nouveau patient</h2>
+                    <h2 class="title">Nouveau test</h2>
                     <?php
                         if(array_key_exists('creat-btn', $_POST)) {
                             creat();
@@ -279,7 +279,10 @@
                                 <div class="select-dropdown"></div>
                             </div>
                         </div>
-                        <p id="error_msg" style="color:red;"></p>
+                        <div id="upload-btn-wrapper">
+                          <button id="btn">importer le résultat</button>
+                          <input type="file" name="myfile" />
+                        </div>
                         <div class="p-t-15">
                         <button class="btn btn--radius-2 btn--blue" type="submit" name="creat-btn" value="creat-btn">
                                 Créer

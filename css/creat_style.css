@@ -737,3 +737,27 @@ input {
     -moz-border-radius: 100%;
     border-radius: 100%;
 }
+
+#upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+#btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 4px 5px;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
