@@ -37,7 +37,7 @@
 
     <!-- Main CSS-->
     <link href="css/creat_style.css" rel="stylesheet" media="all">
-
+    
 </head>
 
 <body>
@@ -98,24 +98,24 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Nouveau test</h2>
+                    <h2 class="title">Nouveau patient</h2>
                     <?php
                         if(array_key_exists('creat-btn', $_POST)) {
                             creat();
                         }else{ }
 
                         function creat() {
+                            
                             date_default_timezone_set('Africa/Algiers');
+                            include("Auth_pub.php"); 
 
-                            $nom_bdd = "natidja";
-                            $server = "localhost";
-                            $user = "root";
-                            $password = "";
-
+                            //$pseudo_labo = $_POST["pseudo_labo"];
                             $nom_p = $_POST["nom_p"];
                             $prenom_p = $_POST["prenom_p"];
                             $date_naissance = $_POST["date_naissance"];
                             $sexe = $_POST["sexe"];
+                            $date_test = date('Y-m-j h:i:s');
+                            
 
                                 if(!empty($_POST['subject'])) {
                                     $type = $_POST['subject'];
@@ -158,27 +158,28 @@
                                 
                                 if($nom_p==''||$prenom_p==''||$date_naissance==''
                                 ||$sexe==''||$type==''||$resultat==''){
-                                    echo'<h4 style="color:red; margin-bottom: 15px;">veuillez remplir le formulaire correctement svp!</h4>';
+                                    echo'<center><h5 style="color:red; margin-bottom: 15px;">veuillez remplir le formulaire correctement svp!</h5></center>';
                                 }
 
                                 else{
                                     try {
                                     //Création d'une connexion avec le SGBD
-                                    $connexion = new PDO("mysql:host=$server;dbname=$nom_bdd", $user, $password);
+                    
 
 
                                     //Insertion d'un nouvel étudiant
-                                    $requete_sql = "INSERT INTO test (nom_p, prenom_p, date_naissance, type, resultat, sexe) VALUES (:nom_p, :prenom_p, :date_naissance, :type, :resultat, :sexe)";
+                                    $requete_sql = "INSERT INTO test (nom_p, prenom_p, date_naissance, type, resultat, sexe, date_test) VALUES (:nom_p, :prenom_p, :date_naissance, :type, :resultat, :sexe, :date_test)";
 
-                                    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                                    $p = $connexion->prepare($requete_sql);
+                                    $p = $conn->prepare($requete_sql);
                                     $p->bindParam(":nom_p", $nom_p);
                                     $p->bindParam(":prenom_p", $prenom_p);
                                     $p->bindParam(":date_naissance", $date_naissance);
                                     $p->bindParam(":type", $type);
                                     $p->bindParam(":resultat", $resultat);
                                     $p->bindParam(":sexe", $sexe);
+                                    $p->bindParam(":date_test", $date_test);
                                     $p->execute();
 
                                     $pseudo= $nom_p ."_". $prenom_p."";
@@ -193,14 +194,12 @@
                                     }
 
                                     $mdp= passgen1(8);
-                                    $req_sql="insert into patient(nom_p, prenom_p, date_naissance, resultat, id_test,sexe) SELECT nom_p, prenom_p, date_naissance, resultat, id_test, sexe FROM test where nom_p='$nom_p'and prenom_p='$prenom_p' ";
-                                    $connexion->exec($req_sql);
+                                    $req_sql="insert into patient(nom_p, prenom_p, date_naissance, resultat, id_test, sexe) SELECT nom_p, prenom_p, date_naissance, resultat, id_test, sexe FROM test where nom_p='$nom_p'and prenom_p='$prenom_p' ";
+                                    $conn->exec($req_sql);
                                     $requete_sql2 ="UPDATE patient SET pseudo = '$pseudo', mdp='$mdp' WHERE nom_p='$nom_p'and prenom_p='$prenom_p'";
-                                    $connexion->exec($requete_sql2);
-
-
-                                    $req_sql3 = "SELECT count(*) as 'nbr' from test where resultat = 'positive'";
-                                    $res = $connexion->query($req_sql3);
+                                    $conn->exec($requete_sql2);
+                                    $req_sql3 = "SELECT count(*) as 'nbr' from test where resultat = 'positif'";
+                                    $res = $conn->query($req_sql3);
 
                                     while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
                                         $positif = $tup['nbr'];
@@ -209,7 +208,7 @@
                                     echo '<script language="Javascript">
                                     document.location.replace("insert_test.php");
                                     </script>';
-                                    $connexion = null;
+                                    $conn = null;
 
                                     } catch (PDOException $e) {
                                         echo "Erreur ! " . $e->getMessage() . "<br/>";
@@ -217,7 +216,7 @@
                                 }
                         }
                     ?>
-                    <form method="POST" name="formSaisie" >
+                <form method="POST" name="formSaisie" >
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -277,30 +276,33 @@
                                     <option id="positif">positif</option>
                                 </select>
                                 <div class="select-dropdown"></div>
-                            </div>
+                            </div><br><br>
+                            <label class="custom-file-upload" style=" font-family: calibri;
+                                        padding:17px;
+                                        -webkit-border-radius: 25px;
+                                        -moz-border-radius: 5px;
+                                        border: 1px  #BBB; 
+                                        text-align: center;
+                                        background-color: #DDD;
+                                        cursor:pointer;
+                                        color:white">
+                                 <input type="file" name="avatar" id="avatar" style=" display: none;">
+                                      importer le resultat
+                            </label>
+
                         </div>
-                        <div id="upload-btn-wrapper">
-                          <button id="btn">importer le résultat</button>
-                          <input type="file" name="myfile" />
-                        </div>
+                        <p id="error_msg" style="color:red;"></p>
                         <div class="p-t-15">
-                        <button class="btn btn--radius-2 btn--blue" type="submit" name="creat-btn" value="creat-btn">
+                        <button class="btn btn--radius-2 btn--blue" type="submit" name="creat-btn">
                                 Créer
-                            </button>
+                        </button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
-    <div class="form-popup" id="myForm" style="display:none";>
-        <form  class="form-container">
-            <h2>formulaire remplit avec succes</h2><br><br>
-            <button type="submit" class="btn" onclick="window.print()">imprimer l'identifiant et le mot de passe du patient</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">fermer</button>
-        </form>
-    </div>
+    
                             
 
     <!-- Jquery JS-->

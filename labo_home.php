@@ -4,11 +4,10 @@
                   $pseudo = $_POST["pseudo"];
                   $mdp = $_POST["pwd"];
                   try {
-                    
             
                     //Récupération de tous les utilisateurs
-                    $requete_sql = "select * from labo where nom_labo ='$pseudo' and pwd ='$mdp'";
-
+                    $requete_sql = "select * from labo where adresse_email ='$pseudo' and pwd ='$mdp'";
+                    
                     $result = $conn->query($requete_sql); 
                     if($result->rowCount() == 0){
                     //Authentification échouée !!!
@@ -45,28 +44,15 @@
                 while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
                     $attente = $tup['nbr'];
                 }
-                    
-                      /* $query_r = mysqli_query($conn," SELECT * FROM test ");
-
-                        $row = mysqli_num_rows($query_r);
-                        echo '<h1>'.$row.'</h1>';
-
-                        $requete1 = "select * from test where resultat = 'positif' ";
-                        $positif = $conn->query($requete1);
-                        $$arrLength = count($positif);
-                        echo $number;*/
-
-
-                        $requete_l= "select * from patient ";
-                                    $result_l = $conn->query($requete_l);
-                        
+                        $requete_l= "select * from test order by id_test desc";
+                        $result_l = $conn->query($requete_l);  
                     }
                       //Clôture de la connexion
                       $conn = null;
                     } catch (PDOException $e) {
                         echo "Erreur ! " . $e->getMessage() . "<br/>";
                     }
-                ?>
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -134,7 +120,7 @@
                                     </div>
                                     <div class="account-dropdown__body">
                                         <div class="account-dropdown__footer">
-                                            <a href='login_labo.html' alt='Broken Link' style="text-decoration: none;">
+                                            <a href='login_labo.php' alt='Broken Link' style="text-decoration: none;">
                                                 <i class="zmdi zmdi-power"></i>Déconnecter</a>
                                         </div>
                                     </div>

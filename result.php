@@ -102,20 +102,18 @@
                     echo "<br><br><br><h2> NOM:  ".$nom."</h2><br>";
                     echo "<h2> PRENOM:  ".$prenom."</h2><br>";
                     echo "<h2> DATE NAISSANCE:  ".$date_n."</h2><br>";
-                    echo "<h2> Résultat du test:</h2><center><h1>".$resultat_t."</h1></center><br><br>";
+                    echo "<h2> Résultat du test:".$resultat_t."</h2><br><br>";
                 ?>
                 <style type="text/css">
                     .title{
-
                       font-size: 40px;
                       line-height: 3;
                       margin: 20px;
-
                     }
                     .hr{
-                    border: 2px solid grey;
-                    border-radius: 2px;
-                    margin:30px;
+                      border: 2px solid grey;
+                      border: 4px solid #BBBBBB;
+                      border-radius: 5px;
                     }
                 </style>
 
