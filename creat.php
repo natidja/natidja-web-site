@@ -270,7 +270,7 @@
                             <label class="label">résultat de test</label>
                             <div class="rs-select2 js-select-simple select--no-search">
                                 <select name="resultat"  id="resultat">
-                                <option disabled="disabled" selected="selected" >Choisir une option</option>
+                                    <option disabled="disabled" selected="selected" >Choisir une option</option>
                                     <option id="attente">en attente</option>
                                     <option id="negatif">negatif</option>
                                     <option id="positif">positif</option>
@@ -285,13 +285,12 @@
                                         text-align: center;
                                         background-color: #DDD;
                                         cursor:pointer;
-                                        color:white">
+                                        color:black">
                                  <input type="file" name="avatar" id="avatar" style=" display: none;">
                                       importer le resultat
                             </label>
 
                         </div>
-                        <p id="error_msg" style="color:red;"></p>
                         <div class="p-t-15">
                         <button class="btn btn--radius-2 btn--blue" type="submit" name="creat-btn">
                                 Créer

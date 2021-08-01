@@ -256,9 +256,7 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                     <option id="negatif">negatif</option>
                                     <option id="positif">positif</option>
                                 </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                        </div>';}
+                                <div class="select-dropdown"></div>';}
                         elseif($resultat_p =='negatif'){
                         echo'
                         <div class="input-group">
@@ -269,10 +267,7 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                     <option id="negatif" selected="selected">negatif</option>
                                     <option id="positif">positif</option>
                                 </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                            
-                        </div>';}
+                                <div class="select-dropdown"></div>';}
                         else{
                             echo'<div class="input-group">
                         <label class="label">résultat de test</label>
@@ -283,17 +278,34 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                 <option id="positif" selected="selected">positif</option>
                             </select>
                             <div class="select-dropdown"></div>
+                        '; }?>
+                        </div><br><br>
+                        <label class="custom-file-upload" style=" font-family: calibri;
+                                        padding-right:30.6px;
+                                        padding-left:30.6px;
+                                        padding-top:17px;
+                                        padding-bottom:17px;
+                                        -webkit-border-radius: 25px;
+                                        -moz-border-radius: 5px;
+                                        border: 1px  #BBB; 
+                                        text-align: center;
+                                        background-color: #DDD;
+                                        cursor:pointer;
+                                        color:white">
+                                 <input type="file" name="avatar" id="avatar" style=" display: none;">
+                                      importer le resultat
+                            </label>
                         </div>
-                        </div>'; }?>
                         <div class="p-t-15">
+                            
 
 
                         <?php echo '<form action="insert_test_edit.php" method="POST">
                                     <input type="hidden" name="mdp" value="'.$mdp.'  ">
-                                    <button class="btn btn--radius-2 btn--blue" type="submit" onclick="myFunction()">
+                                    <button class="btn btn--radius-2 btn--blue" type="submit" >
                                 Modifier
-                            </button>
-                                    </form>'; ?>
+                                </button>
+                            </form>'; ?>
                         
                         
                                     
@@ -334,12 +346,6 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
     <!-- Bootstrap JS-->
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-
-    <script>
-        function myFunction() {
-        alert("Patient crée avec succès");
-        }
-    </script>
 
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->

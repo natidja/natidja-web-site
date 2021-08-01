@@ -80,27 +80,12 @@
 				while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
 					$positif = $tup['nbr'];
 				}
-				
+				echo '<script language="Javascript">
+	                    document.location.replace("labo_home.php");
+	                    </script>';
 		//Clôture de la connexion
 		$connexion = null;
 	} catch (PDOException $e) {
 		echo "Erreur ! " . $e->getMessage() . "<br/>";
 	}
 ?>
-
-<!DOCTYPE html>
-<html>
-    <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    </head>
-<body>
-<?php 
-    echo 'www.natidja.com <br/>';
-    echo "Pseudo: " . $pseudo . "<br/> Mots De Passe: " . $mdp . "<br/>";
-?>
-
-<button class="btn btn-primary hidden-print" onclick="window.print()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-<a href="labo_home.php"><button class="btn btn-primary hidden-print"> Close</button>
-</a>
-</body>
-</html>

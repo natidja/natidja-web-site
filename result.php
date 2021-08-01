@@ -9,7 +9,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Labo-Home</title>
+    <title>Resultat</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">

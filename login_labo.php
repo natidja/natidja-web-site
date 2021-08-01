@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <title>Login V1</title>
+    <title>Login labo</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
