@@ -115,7 +115,7 @@
                             $prenom_p = $_POST["prenom_p"];
                             $date_naissance = $_POST["date_naissance"];
                             $sexe = $_POST["sexe"];
-                            $date_test = date('Y-m-j h:i:s');
+                            $date_test = date('Y-m-j');
                             
 
                                 if(!empty($_POST['subject'])) {

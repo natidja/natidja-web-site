@@ -90,7 +90,7 @@
                 <div class="header3-wrap">
                     <div class="header__logo" style="margin-left:25px;">
                         <a href="labo_home.php">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                            <img src="images/logo_nav_white.png" alt="CoolAdmin"  style="height:120px; width:180px" />
                         </a>
                     </div>
 
@@ -140,7 +140,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="labo_home.php">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                            <img src="images/logo_nav_white.png" alt="CoolAdmin" style="height:120px; width:180px;"/>
                         </a>
                         </button>
                     </div>
