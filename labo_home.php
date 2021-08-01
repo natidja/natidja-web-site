@@ -1,12 +1,12 @@
 <?php include("Auth_pub.php"); ?>
 <?php  
 
-                  $pseudo = $_POST["pseudo"];
+                  $email = $_POST["email"];
                   $mdp = $_POST["pwd"];
                   try {
             
                     //Récupération de tous les utilisateurs
-                    $requete_sql = "select * from labo where adresse_email ='$pseudo' and pwd ='$mdp'";
+                    $requete_sql = "select * from labo where adresse_email ='$email' and pwd ='$mdp'";
                     
                     $result = $conn->query($requete_sql); 
                     if($result->rowCount() == 0){
@@ -14,7 +14,7 @@
                     header("Location: login_labo.php");
                         die("Erreur de nom d'utilisateur ou de mot de passe !!");
                     } else {
-                        $requete_sql = "select * from labo where nom_labo ='$pseudo' and pwd ='$mdp'";
+                        $requete_sql = "select * from labo where adresse_email ='$email' and pwd ='$mdp'";
                         $result = $conn->query($requete_sql);
 
                         while($tuple = $result->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
@@ -102,6 +102,7 @@
                                 </div>
                                 <div class="content">
                                     <a class="js-acc-btn" href="#" style="text-decoration: none;"> 
+                                        <?php echo$nom;?> 
                                         </a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
@@ -113,9 +114,9 @@
                                         </div>
                                         <div class="content">
                                             <h5 class="name">
-                                                <a href="#" style="text-decoration: none;">john doe</a>
+                                                <a href="#" style="text-decoration: none;"><?php echo$nom;?> </a>
                                             </h5>
-                                            <span class="email">johndoe@example.com</span>
+                                            <span class="email"><?php echo$email;?> </span>
                                         </div>
                                     </div>
                                     <div class="account-dropdown__body">
@@ -154,7 +155,7 @@
                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                         </div>
                         <div class="content">
-                            <a class="js-acc-btn" href="#">john doe</a>
+                            <a class="js-acc-btn" href="#"><?php echo$nom;?> </a>
                         </div>
                         <div class="account-dropdown js-dropdown">
                             <div class="info clearfix">
@@ -165,9 +166,9 @@
                                 </div>
                                 <div class="content">
                                     <h5 class="name">
-                                        <a href="#">john doe</a>
+                                        <a href="#"><?php echo$nom;?> </a>
                                     </h5>
-                                    <span class="email">johndoe@example.com</span>
+                                    <span class="email"><?php echo$email;?> </span>
                                 </div>
                             </div>
                             <div class="account-dropdown__footer">
@@ -248,6 +249,8 @@
                                             <th>sexe</th>
                                             <th>date de naissance</th>
                                             <th>resultat</th>
+                                            <th>id test</th>
+                                            <th>Type</th>
                                             <th ></th>
                                         </tr>
                                     </thead>
@@ -261,6 +264,8 @@
                             $sexe = $tuple['sexe'];
                             $date_naissance = $tuple['date_naissance'];
                             $resultat_p = $tuple['resultat'];
+                            $id_test = $tuple['id_test'];
+                            $type_t = $tuple['type'];
 
                             echo '<tr class="tr-shadow">
                             <td>'.$nom_p.'</td>
@@ -294,13 +299,15 @@
                                     <span class="status--waiting" ><b>'.$resultat_p.'</b></span>
                                 </td>';
                             }
-                            
+                            echo'<td>'.$id_test.' </td> <td>'.$type_t.' </td>';
                                 echo'<td>
                                 <div class="table-data-feature">
         
-                                    <button type="submit" name="edit_btn" class="item" data-toggle="tooltip" 
-                                        data-placement="top" title="Éditer" style="margin-right: 5px;"> 
-                                    <i class="zmdi zmdi-edit"></i> </button> 
+                                    <form action="modifier.php" method="POST" style="margin-right:5px;">
+                                        <input type="hidden" name="edit_id" value="'.$tuple['id_test'].'">
+                                        <button type="submit" name="edit_btn " class="item" data-toggle="tooltip" data-placement="top" title="edit">
+                                        <i class="zmdi zmdi-edit"></i> </button>
+                                    </form>
 
                                     <form action="supprimer.php" method="POST">
                                     <input type="hidden" name="delete_nomp" value="'.$tuple['id_test'].'">
