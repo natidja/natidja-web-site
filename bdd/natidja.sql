@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2021 at 03:30 PM
+-- Generation Time: Jul 31, 2021 at 09:16 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.26
 
@@ -69,7 +69,13 @@ CREATE TABLE `patient` (
 INSERT INTO `patient` (`id_p`, `pseudo`, `mdp`, `nom_p`, `prenom_p`, `date_naissance`, `resultat`, `id_test`, `sexe`) VALUES
 (463, 'sayeh_khalil', 'hajoDzoP', 'sayeh', 'khalil', '0001-01-01', 'en attente', 190, 'homme'),
 (470, 'houssem_qqqq', 'yYbkkVxs', 'houssem', 'qqqq', '0001-01-01', 'en attente', 193, 'homme'),
-(479, 'sdf_testmen', '92o6cPOx', 'sdf', 'testmen', '0001-01-01', 'positif', 198, 'homme');
+(472, 'houssem_baba', 'Z2vo0yU3', 'houssem', 'baba', '2021-07-31', 'en attente', 195, 'homme'),
+(479, 'sdf_testmen', '92o6cPOx', 'sdf', 'testmen', '0001-01-01', 'positif', 198, 'homme'),
+(485, 'houssem_eddine', 'OvPCPoZw', 'houssem', 'eddine', '2002-01-24', 'positif', 201, 'homme'),
+(486, 'houssem_eddine', 'OvPCPoZw', 'houssem', 'eddine', '2002-01-24', 'positif', 202, 'homme'),
+(489, 'houssem_testmen', '5UMbwD1j', 'houssem', 'testmen', '2002-01-24', 'negatif', 204, 'homme'),
+(498, 'houssem_eddine', 'OvPCPoZw', 'houssem', 'eddine', '2002-01-24', 'negatif', 205, 'homme'),
+(506, 'sdf_khra', 'a42QLFNl', 'sdf', 'khra', '2002-01-24', 'negatif', 206, 'homme');
 
 -- --------------------------------------------------------
 
@@ -95,7 +101,13 @@ CREATE TABLE `test` (
 INSERT INTO `test` (`id_test`, `nom_p`, `prenom_p`, `date_naissance`, `type`, `resultat`, `sexe`, `date_test`) VALUES
 (190, 'sayeh', 'khalil', '0001-01-01', 'virologique', 'en attente', 'homme', NULL),
 (193, 'houssem', 'qqqq', '0001-01-01', 'sérologique', 'en attente', 'homme', NULL),
-(198, 'sdf', 'testmen', '0001-01-01', 'sérologique', 'positif', 'homme', NULL);
+(195, 'houssem', 'baba', '2021-07-31', 'virologique', 'en attente', 'homme', NULL),
+(198, 'sdf', 'testmen', '0001-01-01', 'sérologique', 'positif', 'homme', NULL),
+(201, 'houssem', 'eddine', '2002-01-24', 'antigénique', 'positif', 'homme', '0000-00-00 00:00:00'),
+(202, 'houssem', 'eddine', '2002-01-24', 'antigénique', 'positif', 'homme', '0000-00-00 00:00:00'),
+(204, 'houssem', 'testmen', '2002-01-24', 'virologique', 'negatif', 'homme', '0000-00-00 00:00:00'),
+(205, 'houssem', 'eddine', '2002-01-24', 'sérologique', 'negatif', 'homme', '0000-00-00 00:00:00'),
+(206, 'sdf', 'khra', '2002-01-24', 'sérologique', 'negatif', 'homme', '2021-07-31 07:54:13');
 
 --
 -- Indexes for dumped tables
@@ -134,13 +146,13 @@ ALTER TABLE `labo`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id_p` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=524;
+  MODIFY `id_p` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=507;
 
 --
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `id_test` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=211;
+  MODIFY `id_test` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
 
 --
 -- Constraints for dumped tables

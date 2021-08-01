@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();  ?>
 <?php  
 
                   include("Auth_pub.php");
@@ -47,7 +47,15 @@
                 }
                         $requete_l= "SELECT * from test WHERE id_labo='$id_labo' order by id_test desc ";
                         $result_l = $conn->query($requete_l);  
+                }
+                $alluser = $conn->query('SELECT * FROM test where id_labo= "$id_labo" ORDER BY id_test DESC');
+                if(isset($_GET['search']) AND !empty($_GET['search']))
+                    {
+                      $recherche = htmlspecialchars($_GET['search']);
+                      $req2 = "SELECT * FROM test where id_labo= '$id_labo' and nom_p LIKE '%".$recherche."%'";
+                      $alluser = $conn->query($req2);
                     }
+                else{}
                       //Clôture de la connexion
                       $conn = null;
                     } catch (PDOException $e) {
@@ -103,7 +111,7 @@
                                 </div>
                                 <div class="content">
                                     <a class="js-acc-btn" href="#" style="text-decoration: none;"> 
-                                        <?php echo $_SESSION["nom_labo"];?> 
+                                        <?php echo $nom;?> 
                                         </a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
@@ -115,9 +123,9 @@
                                         </div>
                                         <div class="content">
                                             <h5 class="name">
-                                                <a href="#" style="text-decoration: none;"><?php echo$_SESSION["nom_labo"];?> </a>
+                                                <a href="#" style="text-decoration: none;"><?php echo$nom;?> </a>
                                             </h5>
-                                            <span class="email"><?php echo$_SESSION["pseudo_labo"];?> </span>
+                                            <span class="email"><?php echo$email;?> </span>
                                         </div>
                                     </div>
                                     <div class="account-dropdown__body">
@@ -139,7 +147,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="labo_home.php">
+                        <a class="logo" href="labo_home.html">
                             <img src="images/icon/logo-white.png" alt="CoolAdmin" />
                         </a>
                         </button>
@@ -156,20 +164,20 @@
                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                         </div>
                         <div class="content">
-                            <a class="js-acc-btn" href="#"><?php echo$_SESSION["nom_labo"];?> </a>
+                            <a class="js-acc-btn" href="#"><?php echo$nom;?> </a>
                         </div>
                         <div class="account-dropdown js-dropdown">
                             <div class="info clearfix">
                                 <div class="image">
-                                    <a href="labo_home.php">
+                                    <a href="#">
                                         <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                     </a>
                                 </div>
                                 <div class="content">
                                     <h5 class="name">
-                                        <a href="labo_home.php"><?php echo$_SESSION["nom_labo"];?> </a>
+                                        <a href="#"><?php echo$nom;?> </a>
                                     </h5>
-                                    <span class="email"><?php echo$_SESSION["pseudo_labo"];?> </span>
+                                    <span class="email"><?php echo$email;?> </span>
                                 </div>
                             </div>
                             <div class="account-dropdown__footer">
@@ -255,10 +263,10 @@
                                         </tr>
                                     </thead>
                                     <tbody >
-                                    <?php 
-                                    
-
-                        while($tuple = $result_l->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
+                <?php 
+                        
+                    if($alluser->rowCount() > 0){  
+                        while($tuple = $alluser->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
                             $nom_p = $tuple['nom_p'];
                             $prenom_p = $tuple['prenom_p'];
                             $sexe = $tuple['sexe'];
@@ -319,7 +327,9 @@
                             </td>
                         </tr>
                         <tr class="spacer"></tr>';
-                        } ?>
+                        }
+                    }
+                    else{} ?>
                                     </tbody>
                                 </table>
                                 

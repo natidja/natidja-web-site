@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
     <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>information</title>
+    <title>Labo-Home</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -79,7 +79,7 @@
 
     <div class="cards">
         <div class="card card-1">
-            <center><h1 class="title">information personnelle</h1></center><br>
+            <center><h1 class="title">Votre informations</h1></center><br>
             <div>
                 <h3 style="text-align:center;">www.natidja.com<br></h3>
                 <?php
@@ -104,7 +104,8 @@
     </div>
 
     <div style="text-align:center; margin-top:25px ">
-        <button class="btn btn-primary hidden-print" onclick="window.print()" ><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+    <button class="btn btn-primary hidden-print" onclick="window.print()" >
+    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
           <a href="labo_home.php" style="margin-left:25px ;" class="hidden-print">
               <button class="btn btn-primary hidden-print" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</button>
           </a>

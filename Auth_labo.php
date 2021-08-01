@@ -1,32 +1,30 @@
+<?php session_start() ?>
 <?php
-    header('content-type: text/html; charset=utf-8');
-    date_default_timezone_set('Africa/Algiers');
+$config=array(
+'DB_HOST'=>'localhost',
+'DB_USERNAME'=>'root',
+'DB_PASSWORD'=>'',
+'DB_DATABASE'=>'natija'
+);
 
-    $pseudo = $_POST["pseudo"];
-    $mdp = $_POST["pwd"];
+try
+{
+    $host=$config['DB_HOST'];
+    $dbname=$config['DB_DATABASE'];
+    $conn= new PDO("mysql:host=$host;dbname=$dbname",$config['DB_USERNAME'],$config['DB_PASSWORD']);
+    $_SESSION["pseudo_labo"] = $_POST["email"];
+    $_SESSION["mdp_labo"] = $_POST["pwd"];
 
-    $nom_bdd = "natidja";
-    $server = "localhost";
-    $user = "root";
-    $password = "";
+    $req_sql = "select nom_labo from labo where adresse_email='$_SESSION[pseudo_labo]'";
+    $resultat = $conn->query($req_sql);
+    $tuple = $resultat->fetch(PDO::FETCH_ASSOC);
+        $nom = $tuple['nom_labo'];
+        $_SESSION["nom_labo"] = $nom;
+    header("Location: labo_home.php");  
+}
 
-    try {
-        //Création d'une connexion avec le SGBD
-        $connexion = new PDO("mysql:host=$server;dbname=$nom_bdd", $user, $password);
-
-        //Récupération de tous les utilisateurs
-        $requete_sql = "select * from labo where nom_labo ='$pseudo' and pwd ='$mdp'";
-
-        $result = $connexion->query($requete_sql);
-
-        if($result->rowCount() == 0){//Authentification échouée !!!
-            die("Erreur de nom d'utilisateur ou de mot de passe !!");
-        } else {
-            header("Location: .php");
-        }
-        //Clôture de la connexion
-        $connexion = null;
-    } catch (PDOException $e) {
-        echo "Erreur ! " . $e->getMessage() . "<br/>";
-    }
+catch(PDOException $e)
+{
+    echo "Error:".$e->getMessage();
+}
 ?>

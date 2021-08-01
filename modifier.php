@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <?php
 include("Auth_pub.php");
 //récuperation id test de la ligne
@@ -99,7 +100,7 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                 <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                             </div>
                             <div class="content">
-                                <a class="js-acc-btn" href="#" style="text-decoration: none;">john doe</a>
+                                <a class="js-acc-btn" href="#" style="text-decoration: none;"><?php echo$_SESSION["nom_labo"];?></a>
                             </div>
                             <div class="account-dropdown js-dropdown">
                                 <div class="info clearfix">
@@ -110,9 +111,9 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                     </div>
                                     <div class="content">
                                         <h5 class="name">
-                                            <a href="#" style="text-decoration: none;">john doe</a>
+                                            <a href="#" style="text-decoration: none;"><?php echo$_SESSION["nom_labo"];?></a>
                                         </h5>
-                                        <span class="email">johndoe@example.com</span>
+                                        <span class="email"><?php echo $_SESSION["pseudo_labo"];?></span>
                                     </div>
                                 </div>
                                 <div class="account-dropdown__body">
@@ -256,7 +257,9 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                     <option id="negatif">negatif</option>
                                     <option id="positif">positif</option>
                                 </select>
-                                <div class="select-dropdown"></div>';}
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>';}
                         elseif($resultat_p =='negatif'){
                         echo'
                         <div class="input-group">
@@ -267,7 +270,10 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                     <option id="negatif" selected="selected">negatif</option>
                                     <option id="positif">positif</option>
                                 </select>
-                                <div class="select-dropdown"></div>';}
+                                <div class="select-dropdown"></div>
+                            </div>
+                            
+                        </div>';}
                         else{
                             echo'<div class="input-group">
                         <label class="label">résultat de test</label>
@@ -278,13 +284,11 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                 <option id="positif" selected="selected">positif</option>
                             </select>
                             <div class="select-dropdown"></div>
-                        '; }?>
-                        </div><br><br>
-                        <label class="custom-file-upload" style=" font-family: calibri;
-                                        padding-right:30.6px;
-                                        padding-left:30.6px;
-                                        padding-top:17px;
-                                        padding-bottom:17px;
+                        </div>
+                        </div>'; }?>
+                        
+                            <label class="custom-file-upload" style=" font-family: calibri;
+                                        padding:17px;
                                         -webkit-border-radius: 25px;
                                         -moz-border-radius: 5px;
                                         border: 1px  #BBB; 
@@ -292,20 +296,17 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                         background-color: #DDD;
                                         cursor:pointer;
                                         color:white">
-                                 <input type="file" name="avatar" id="avatar" style=" display: none;">
-                                      importer le resultat
-                            </label>
-                        </div>
-                        <div class="p-t-15">
-                            
+                                 <input type="file" name="avatar" id="avatar" >   
+                            </label><br><br>
 
+                        <div class="p-t-15">
 
                         <?php echo '<form action="insert_test_edit.php" method="POST">
                                     <input type="hidden" name="mdp" value="'.$mdp.'  ">
-                                    <button class="btn btn--radius-2 btn--blue" type="submit" >
+                                    <button class="btn btn--radius-2 btn--blue" type="submit">
                                 Modifier
-                                </button>
-                            </form>'; ?>
+                            </button>
+                                    </form>'; ?>
                         
                         
                                     
@@ -346,6 +347,7 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
     <!-- Bootstrap JS-->
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+
 
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->

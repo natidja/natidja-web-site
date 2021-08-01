@@ -3,7 +3,7 @@ $config=array(
 'DB_HOST'=>'localhost',
 'DB_USERNAME'=>'root',
 'DB_PASSWORD'=>'',
-'DB_DATABASE'=>'natidja'
+'DB_DATABASE'=>'natija'
 );
 
 try
@@ -20,6 +20,4 @@ catch(PDOException $e)
 {
     echo "Error:".$e->getMessage();
 }
-
-
 ?>

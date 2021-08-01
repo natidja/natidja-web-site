@@ -9,7 +9,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Resultat</title>
+    <title>Labo-Home</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -69,30 +69,35 @@
         <div class="card card-1">
             <center><h1 class="title">Votre résultats</h1></center><br>
             <div>
-                <!-- <h3 style="text-align:center;">www.natidja.com<br></h3>
-                //<?php
-                    // try{
-                    // include("Auth_pub.php");
-                    // $req_sql = "SELECT * FROM patient WHERE id_test= (SELECT MAX(id_test) FROM test)";
-                    // $result = $conn->query($req_sql);
-                    // while($tuple = $result->fetch(PDO::FETCH_ASSOC)){
-                    //     $nom_p = $tuple['nom_p'];
-                    //     $prenom_p = $tuple['prenom_p'];
-                    //     $pseudo= $tuple['pseudo'];
-                    //     $mdp= $tuple['mdp'];
-                    // }
-                    // echo "Nom: &nbsp;" . $nom_p . "<br/> Prenom: &nbsp;" . $prenom_p . "<br/>";
-                    // echo "Pseudo: &nbsp;" . $pseudo . "<br/> Mots De Passe: &nbsp;" . $mdp . "<br/>";
-                    // $conn = null;
+                 <!-- <h3 style="text-align:center;">www.natidja.com<br></h3> -->
+                <?php
+                     try{
+                     include("Auth_pub.php");
+                     $req_sql = "SELECT * FROM patient WHERE id_test= (SELECT MAX(id_test) FROM test)";
+                     $res = $conn->query($req_sql);
+                     while($tuple = $res->fetch(PDO::FETCH_ASSOC)){
+                         $nom_p = $tuple['nom_p'];
+                         $prenom_p = $tuple['prenom_p'];
+                         $resultat = $tuple['resultat'];
+                         $avatar= $tuple['avatar'];
+                         $req_sql2= "SELECT date_test FROM test WHERE nom_p='$nom_p' and prenom_p='$prenom_p'";
+                         $res2 = $conn->query($req_sql2);
+                     while($tuple2 = $res2->fetch(PDO::FETCH_ASSOC)){
+                         $date_test = $tuple2['date_test'];
 
-                    //         } catch (PDOException $e) {
-                    //             echo "Erreur ! " . $e->getMessage() . "<br/>";
-                    //         }
-                ?> -->
+                     
+                     echo "<br/><center>Nom: &nbsp;" . $nom_p . "<br/> Prenom: &nbsp;" . $prenom_p . "<br/>Résultat: &nbsp;" . $resultat . "<br/></center>";
+                ?> 
                 <center style="margin-top:30px">
-                <p>test 1 (15-05-2021): <a href="resultat/test1.pdf"> telecharger ici.</a></p> 
-                <p>test 2 (05-07-2021): <a href="resultat/test2.pdf"> telecharger ici.</a></p> 
+                <p>test : <?=$date_test?>: <a href="resultat/<?=$avatar?>"> <?=$avatar?></a></p> 
                 </center>
+                <?php
+                 }
+             } $conn = null;
+
+                     } catch (PDOException $e) {
+                         echo "Erreur ! " . $e->getMessage() . "<br/>";
+                     }?>
             </div>
 
     </div>

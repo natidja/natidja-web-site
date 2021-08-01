@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <title>Login labo</title>
+    <title>Login V1</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -32,12 +32,12 @@
                     <img src="images/logo_login_labo.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form" method="POST" action="labo_home.php">
+                <form class="login100-form validate-form" method="POST" action="Auth_labo.php">
                     <span class="login100-form-title">
 						S'IDENTIFIER
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="un Nom d'etulisateur Valide est requis">
+                    <div class="wrap-input100 validate-input" data-validate="un Nom d'utilisateur Valide est requis">
                         <input class="input100" type="email" name="email" placeholder="Email" id="name" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">

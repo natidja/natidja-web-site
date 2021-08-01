@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -59,7 +60,7 @@
                                 <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                             </div>
                             <div class="content">
-                                <a class="js-acc-btn" href="#" style="text-decoration: none;">john doe</a>
+                                <a class="js-acc-btn" href="#" style="text-decoration: none;"><?php echo $_SESSION["nom_labo"];?></a>
                             </div>
                             <div class="account-dropdown js-dropdown">
                                 <div class="info clearfix">
@@ -70,9 +71,9 @@
                                     </div>
                                     <div class="content">
                                         <h5 class="name">
-                                            <a href="#" style="text-decoration: none;">john doe</a>
+                                            <a href="#" style="text-decoration: none;"><?php echo $_SESSION["nom_labo"];?></a>
                                         </h5>
-                                        <span class="email">johndoe@example.com</span>
+                                        <span class="email"><?php echo $_SESSION["pseudo_labo"];?></span>
                                     </div>
                                 </div>
 
@@ -165,10 +166,14 @@
                                     try {
                                     //Création d'une connexion avec le SGBD
                     
-
+                                        $req = "select id_labo from labo where adresse_email='$_SESSION[pseudo_labo]'";
+                                        $res = $conn->query($req);
+                                        while($tu = $res->fetch(PDO::FETCH_ASSOC)){
+                                            $id_labo = $tu['id_labo'];
+                                        }
 
                                     //Insertion d'un nouvel étudiant
-                                    $requete_sql = "INSERT INTO test (nom_p, prenom_p, date_naissance, type, resultat, sexe, date_test) VALUES (:nom_p, :prenom_p, :date_naissance, :type, :resultat, :sexe, :date_test)";
+                                    $requete_sql = "INSERT INTO test (nom_p, prenom_p, date_naissance, type, resultat, sexe, date_test, id_labo) VALUES (:nom_p, :prenom_p, :date_naissance, :type, :resultat, :sexe, :date_test, :id_labo)";
 
                                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -180,6 +185,7 @@
                                     $p->bindParam(":resultat", $resultat);
                                     $p->bindParam(":sexe", $sexe);
                                     $p->bindParam(":date_test", $date_test);
+                                    $p->bindParam(":id_labo", $id_labo);
                                     $p->execute();
 
                                     $pseudo= $nom_p ."_". $prenom_p."";
@@ -270,27 +276,17 @@
                             <label class="label">résultat de test</label>
                             <div class="rs-select2 js-select-simple select--no-search">
                                 <select name="resultat"  id="resultat">
-                                    <option disabled="disabled" selected="selected" >Choisir une option</option>
+                                <option disabled="disabled" selected="selected" >Choisir une option</option>
                                     <option id="attente">en attente</option>
                                     <option id="negatif">negatif</option>
                                     <option id="positif">positif</option>
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div><br><br>
-                            <label class="custom-file-upload" style=" font-family: calibri;
-                                        padding:17px;
-                                        -webkit-border-radius: 25px;
-                                        -moz-border-radius: 5px;
-                                        border: 1px  #BBB; 
-                                        text-align: center;
-                                        background-color: #DDD;
-                                        cursor:pointer;
-                                        color:black">
-                                 <input type="file" name="avatar" id="avatar" style=" display: none;">
-                                      importer le resultat
-                            </label>
+                            
 
                         </div>
+                        <p id="error_msg" style="color:red;"></p>
                         <div class="p-t-15">
                         <button class="btn btn--radius-2 btn--blue" type="submit" name="creat-btn">
                                 Créer
