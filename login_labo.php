@@ -38,7 +38,7 @@
 					</span>
 
                     <div class="wrap-input100 validate-input" data-validate="un Nom d'etulisateur Valide est requis">
-                        <input class="input100" type="text" name="pseudo" placeholder="Email" id="name" required>
+                        <input class="input100" type="email" name="email" placeholder="Email" id="name" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -58,6 +58,7 @@
                             <button class="login100-form-btn" style="color:white; font-family: Poppins-Bold;" type="submit"  >
                             CONNEXION</button>
                     </div>
+                    
 
                     <div class="text-center p-t-136">
                         <a class="txt2" href="index.php">

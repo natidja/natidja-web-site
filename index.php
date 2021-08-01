@@ -39,14 +39,14 @@
                         </span>
 
                         <div class="wrap-input100 validate-input" data-validate="un identifiant Valide est requis">
-                            <input class="input100" type="text" name="user" placeholder="رقم التسجيل" style="text-align:right">
-                            <span class="focus-input100"></span>
+                            <input class="input100" type="text" name="user" placeholder="رقم التسجيل" style="text-align:right" required>
+                            <span class="focus-input100"></span> 
                             <span class="symbol-input100" style="text-align:right">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </span>
                         </div>
                         <div class="wrap-input100 validate-input" data-validate="mot de passe est requis">
-                            <input class="input100" type="password" name="pass" placeholder="الرقم السري" style="text-align:right">
+                            <input class="input100" type="password" name="pass" placeholder="الرقم السري" style="text-align:right" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
