@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2021 at 10:42 PM
+-- Generation Time: Aug 02, 2021 at 05:58 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.26
 
@@ -69,17 +69,13 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`id_p`, `pseudo`, `mdp`, `nom_p`, `prenom_p`, `date_naissance`, `resultat`, `id_test`, `sexe`, `avatar`) VALUES
-(402, 'bekhtaoui_radia', 'qVBRKHnR  ', 'bekhtaoui', 'radia', '2001-12-01', 'negatif', 231, 'femme', 'test1.pdf'),
-(403, 'issam_peer', 'aMNray1E  ', 'issam', 'peer', '2021-08-06', 'negatif', 232, 'homme', 'Colibris Vert.pdf'),
+(403, 'issam_peer', 'aMNray1E', 'issam', 'peer', '2021-08-06', 'negatif', 232, 'homme', 'Colibris Vert.pdf'),
 (404, 'ziani_issam', 'ispFwI6T  ', 'ziani', 'issam', '2001-04-04', 'positif', 233, 'homme', 'test1.pdf'),
-(410, 'houssem_eddine', 'qBOIw8RG', 'houssem ', 'eddine', '2002-01-24', 'negatif', 237, 'homme', NULL),
-(412, 'houssem_eddine', 'qBOIw8RG', 'houssem ', 'eddine', '2002-01-24', 'negatif', 237, 'homme', NULL),
-(413, 'houssem_eddine', 'qBOIw8RG', 'houssem ', 'eddine', '2002-01-24', 'positif', 239, 'homme', NULL),
-(415, 'houssem_eddine', 'qBOIw8RG', 'houssem ', 'eddine', '2002-01-24', 'negatif', 237, 'homme', NULL),
-(416, 'houssem_eddine', 'qBOIw8RG', 'houssem ', 'eddine', '2002-01-24', 'positif', 239, 'homme', NULL),
-(417, 'houssem_eddine', 'qBOIw8RG', 'houssem', 'eddine', '2002-01-24', 'en attente', 240, 'homme', NULL),
-(418, 'baba _amina', '79OtC8fT', 'baba ', 'amina', '1996-06-04', 'en attente', 241, 'femme', NULL),
-(419, 'baba_aness', 'wBtLYZ0n', 'baba', 'aness', '0001-01-01', 'negatif', 242, 'homme', NULL);
+(429, 'houssem_eddine', 'kKNinHCM  ', 'houssem', 'eddine', '2002-01-24', 'negatif', 249, 'homme', 'test2.pdf'),
+(430, 'houssem_eddine', 'kKNinHCM  ', 'houssem', 'eddine', '2002-01-24', 'positif', 250, 'homme', 'test1.pdf'),
+(439, 'houssem_eddine', 'kKNinHCM  ', 'houssem', 'eddine', '2002-01-24', 'negatif', 249, 'homme', NULL),
+(440, 'houssem_eddine', 'kKNinHCM  ', 'houssem', 'eddine', '2002-01-24', 'positif', 250, 'homme', NULL),
+(442, 'houssem_eddine', 'kKNinHCM  ', 'houssem', 'eddine', '2002-01-24', 'negatif', 258, 'homme', '');
 
 -- --------------------------------------------------------
 
@@ -96,7 +92,7 @@ CREATE TABLE `test` (
   `resultat` varchar(10) DEFAULT NULL,
   `sexe` varchar(6) NOT NULL,
   `avatar` varchar(255) DEFAULT NULL,
-  `date_test` datetime DEFAULT NULL,
+  `date_test` date DEFAULT NULL,
   `id_labo` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -105,14 +101,11 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`id_test`, `nom_p`, `prenom_p`, `date_naissance`, `type`, `resultat`, `sexe`, `avatar`, `date_test`, `id_labo`) VALUES
-(231, 'bekhtaoui', 'radia', '2001-12-01', 'antigÃ©nique', 'negatif', 'femme', 'test1.pdf', '2021-08-01 06:10:52', 2),
-(232, 'issam', 'peer', '2021-08-06', 'antigÃ©nique', 'negatif', 'homme', 'Colibris Vert.pdf', '2021-08-01 06:21:29', 2),
-(233, 'ziani', 'issam', '2001-04-04', 'antigÃ©nique', 'positif', 'homme', 'test1.pdf', '2021-08-01 07:06:27', 2),
-(237, 'houssem ', 'eddine', '2002-01-24', 'sérologique', 'negatif', 'homme', NULL, '2021-08-01 08:05:54', 1),
-(239, 'houssem ', 'eddine', '2002-01-24', 'antigénique', 'positif', 'homme', NULL, '2021-08-01 09:17:25', 1),
-(240, 'houssem', 'eddine', '2002-01-24', 'virologique', 'en attente', 'homme', NULL, '2021-08-01 09:17:38', 1),
-(241, 'baba ', 'amina', '1996-06-04', 'sérologique', 'en attente', 'femme', NULL, '2021-08-01 00:00:00', 1),
-(242, 'baba', 'aness', '0001-01-01', 'sérologique', 'negatif', 'homme', NULL, '2021-08-01 00:00:00', 1);
+(232, 'issam', 'peer', '2021-08-06', 'antigÃ©nique', 'negatif', 'homme', 'Colibris Vert.pdf', '2021-08-01', 2),
+(233, 'ziani', 'issam', '2001-04-04', 'antigÃ©nique', 'positif', 'homme', 'test1.pdf', '2021-08-01', 2),
+(249, 'houssem', 'eddine', '2002-01-24', 'sérologique', 'negatif', 'homme', 'test2.pdf', '2021-08-01', 1),
+(250, 'houssem', 'eddine', '2002-01-24', 'virologique', 'positif', 'homme', 'test1.pdf', '2021-08-01', 1),
+(258, 'houssem', 'eddine', '2002-01-24', 'virologique', 'negatif', 'homme', '', '2021-08-02', 1);
 
 --
 -- Indexes for dumped tables
@@ -152,13 +145,13 @@ ALTER TABLE `labo`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id_p` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=420;
+  MODIFY `id_p` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=443;
 
 --
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `id_test` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
+  MODIFY `id_test` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=259;
 
 --
 -- Constraints for dumped tables

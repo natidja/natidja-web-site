@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,7 +30,7 @@
                 <div class="header3-wrap">
                     <div class="header__logo" style="margin-left:25px;">
                         <a href="index.php">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                            <img src="images/icon/logo-white.png" alt="CoolAdmin" height="90%" width="180px" />
                         </a>
                     </div>
                 </div>
@@ -38,11 +39,11 @@
 
         <!-- HEADER MOBILE-->
         <header class="header-mobile header-mobile-2 d-block d-lg-none">
-            <div class="header-mobile__bar">
+            <div>
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                            <img src="images/icon/logo-white.png" alt="CoolAdmin" height="60px" width="170px" style="margin-top: 7px;"  />
                         </a>
                         </button>
                     </div>
@@ -71,29 +72,47 @@
             <div>
                  <!-- <h3 style="text-align:center;">www.natidja.com<br></h3> -->
                 <?php
+                    include("Auth_pub.php");
+                    $_SESSION["pseudo_pat"] = $_POST["user"];
+                    $_SESSION["mdp_pat"] = $_POST["pass"];
                      try{
-                     include("Auth_pub.php");
-                     $req_sql = "SELECT * FROM patient WHERE id_test= (SELECT MAX(id_test) FROM test)";
+                     
+                     $req_sql = "SELECT * FROM patient WHERE pseudo='$_SESSION[pseudo_pat]' and mdp='$_SESSION[mdp_pat]'";
                      $res = $conn->query($req_sql);
+                     if($res->rowCount() == 0){
+                        //Authentification échouée !!!
+                        header("Location: index.php");
+                        die("Erreur de nom d'utilisateur ou de mot de passe !!");
+                    } 
+                    else {
                      while($tuple = $res->fetch(PDO::FETCH_ASSOC)){
                          $nom_p = $tuple['nom_p'];
                          $prenom_p = $tuple['prenom_p'];
-                         $resultat = $tuple['resultat'];
-                         $avatar= $tuple['avatar'];
-                         $req_sql2= "SELECT date_test FROM test WHERE nom_p='$nom_p' and prenom_p='$prenom_p'";
-                         $res2 = $conn->query($req_sql2);
-                     while($tuple2 = $res2->fetch(PDO::FETCH_ASSOC)){
-                         $date_test = $tuple2['date_test'];
-
-                     
-                     echo "<br/><center>Nom: &nbsp;" . $nom_p . "<br/> Prenom: &nbsp;" . $prenom_p . "<br/>Résultat: &nbsp;" . $resultat . "<br/></center>";
-                ?> 
-                <center style="margin-top:30px">
-                <p>test : <?=$date_test?>: <a href="resultat/<?=$avatar?>"> <?=$avatar?></a></p> 
-                </center>
-                <?php
-                 }
-             } $conn = null;
+                         }
+                        echo "<br/><center>Nom: &nbsp;" . $nom_p . "<br/> Prenom: &nbsp;" . $prenom_p . "</center>";
+                        $req_sql2 = "SELECT * FROM test where nom_p='$nom_p' and prenom_p='$prenom_p' order by id_test desc";
+                        $res2 = $conn->query($req_sql2);
+                        while($tuple2 = $res2->fetch(PDO::FETCH_ASSOC)){
+                            $resultat= $tuple2['resultat'];
+                            $avatar= $tuple2['avatar'];
+                            $date_test = $tuple2['date_test'];
+                            if($resultat!="en attente"){
+                                ?> 
+                                <center style="margin-top:30px">
+                                <p>test :<?= $date_test ?> :<?= $resultat ?>
+                                <br>pour plus d'information<a href="resultat/<?=$avatar?>"> click ici</a></p> 
+                                </center>
+                                <?php
+                            }
+                            else{
+                                ?> 
+                                <center style="margin-top:30px">
+                                <p>test :<?= $date_test ?> :<?= $resultat ?></p> 
+                                </center>
+                                <?php
+                            }
+                
+             } }$conn = null;
 
                      } catch (PDOException $e) {
                          echo "Erreur ! " . $e->getMessage() . "<br/>";

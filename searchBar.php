@@ -55,7 +55,9 @@
                       $req2 = "SELECT * FROM test where id_labo= '$id_labo' and nom_p LIKE '%".$recherche."%'";
                       $alluser = $conn->query($req2);
                     }
-                else{}
+                else{
+                    header("Location: labo_home.php");
+                }
                       //Clôture de la connexion
                       $conn = null;
                     } catch (PDOException $e) {
@@ -93,12 +95,12 @@
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
-        <header class="header-desktop3 d-none d-lg-block">
+         <header class="header-desktop3 d-none d-lg-block">
             <div class="section__content section__content--p35">
                 <div class="header3-wrap">
                     <div class="header__logo" style="margin-left:25px;">
                         <a href="labo_home.php">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                            <img src="images/icon/logo-white.png" alt="CoolAdmin" height="90%" width="180px" />
                         </a>
                     </div>
 
@@ -118,7 +120,7 @@
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                <img src="images/icon/avatar-01.jpg" alt="John Doe" height="90%" width="180px"/>
                                             </a>
                                         </div>
                                         <div class="content">
@@ -148,7 +150,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="labo_home.html">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                            <img src="images/icon/logo-white.png" alt="CoolAdmin" height="50%" width="100px" />
                         </a>
                         </button>
                     </div>
@@ -170,7 +172,7 @@
                             <div class="info clearfix">
                                 <div class="image">
                                     <a href="#">
-                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                        <img src="images/icon/avatar-01.jpg" alt="John Doe"/>
                                     </a>
                                 </div>
                                 <div class="content">
@@ -272,7 +274,6 @@
                             $sexe = $tuple['sexe'];
                             $date_naissance = $tuple['date_naissance'];
                             $resultat_p = $tuple['resultat'];
-                            $id_test = $tuple['id_test'];
                             $type_t = $tuple['type'];
 
 

@@ -10,10 +10,7 @@ try
 {
     $host=$config['DB_HOST'];
     $dbname=$config['DB_DATABASE'];
-$conn= new PDO("mysql:host=$host;dbname=$dbname",$config['DB_USERNAME'],$config['DB_PASSWORD']);
-//new PDO("mysql:host=$hostname;dbname=mysql", $username, $password);
-    
- 
+	$conn= new PDO("mysql:host=$host;dbname=$dbname",$config['DB_USERNAME'],$config['DB_PASSWORD']);
 }
 
 catch(PDOException $e)

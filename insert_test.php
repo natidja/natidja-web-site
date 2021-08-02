@@ -1,4 +1,23 @@
-<?php session_start() ?>
+<?php session_start(); ?>
+<?php 
+           include("Auth_pub.php");
+            try {
+                $requete_sql = "select * from labo where adresse_email ='$_SESSION[pseudo_labo]' and pwd ='$_SESSION[mdp_labo]'";
+
+                        $result = $conn->query($requete_sql);
+
+                        while($tuple = $result->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
+                            $id_labo= $tuple['id_labo'];
+                            $nom = $tuple['nom_labo'];
+                            $wilaya = $tuple['wilaya'];
+                            $email = $tuple['adresse_email'];
+                        }
+                        $conn = null;
+                    } catch (PDOException $e) {
+                        echo "Erreur ! " . $e->getMessage() . "<br/>";
+                    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +49,7 @@
             <div class="header3-wrap">
                 <div class="header__logo">
                     <a href="labo_home.php">
-                        <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                        <img src="images/icon/logo-white.png" alt="CoolAdmin" height="90%" width="180px"/>
                     </a>
                 </div>
 
@@ -42,7 +61,7 @@
                                 <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                             </div>
                             <div class="content">
-                                <a class="js-acc-btn" href="#" style="text-decoration: none;">john doe</a>
+                                <a class="js-acc-btn" href="#" style="text-decoration: none;"><?php echo $nom;?> </a>
                             </div>
                             <div class="account-dropdown js-dropdown">
                                 <div class="info clearfix">
@@ -53,9 +72,9 @@
                                     </div>
                                     <div class="content">
                                         <h5 class="name">
-                                            <a href="#" style="text-decoration: none;">john doe</a>
+                                            <a href="#" style="text-decoration: none;"><?php echo$nom;?></a>
                                         </h5>
-                                        <span class="email">johndoe@example.com</span>
+                                        <span class="email"><?php echo$email;?></span>
                                     </div>
                                 </div>
 
@@ -105,8 +124,7 @@
     </div>
 
     <div style="text-align:center; margin-top:25px ">
-    <button class="btn btn-primary hidden-print" onclick="window.print()" >
-    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+          <button class="btn btn-primary hidden-print" onclick="window.print()" ><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
           <a href="labo_home.php" style="margin-left:25px ;" class="hidden-print">
               <button class="btn btn-primary hidden-print" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</button>
           </a>

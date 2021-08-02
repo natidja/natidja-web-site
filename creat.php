@@ -1,4 +1,22 @@
 <?php session_start(); ?>
+<?php 
+           include("Auth_pub.php");
+            try {
+                $requete_sql = "select * from labo where adresse_email ='$_SESSION[pseudo_labo]' and pwd ='$_SESSION[mdp_labo]'";
+
+                        $result = $conn->query($requete_sql);
+
+                        while($tuple = $result->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
+                            $id_labo= $tuple['id_labo'];
+                            $nom = $tuple['nom_labo'];
+                            $wilaya = $tuple['wilaya'];
+                            $email = $tuple['adresse_email'];
+                        }
+                        $conn = null;
+                    } catch (PDOException $e) {
+                        echo "Erreur ! " . $e->getMessage() . "<br/>";
+                    }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -48,7 +66,7 @@
             <div class="header3-wrap">
                 <div class="header__logo">
                     <a href="labo_home.php">
-                        <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                        <img src="images/icon/logo-white.png" alt="CoolAdmin" height="90%" width="180px"/>
                     </a>
                 </div>
 
@@ -60,7 +78,7 @@
                                 <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                             </div>
                             <div class="content">
-                                <a class="js-acc-btn" href="#" style="text-decoration: none;"><?php echo $_SESSION["nom_labo"];?></a>
+                                <a class="js-acc-btn" href="#" style="text-decoration: none;"><?php echo$nom;?></a>
                             </div>
                             <div class="account-dropdown js-dropdown">
                                 <div class="info clearfix">
@@ -71,9 +89,9 @@
                                     </div>
                                     <div class="content">
                                         <h5 class="name">
-                                            <a href="#" style="text-decoration: none;"><?php echo $_SESSION["nom_labo"];?></a>
+                                            <a href="#" style="text-decoration: none;"><?php echo$nom;?></a>
                                         </h5>
-                                        <span class="email"><?php echo $_SESSION["pseudo_labo"];?></span>
+                                        <span class="email"><?php echo$email;?></span>
                                     </div>
                                 </div>
 
@@ -91,8 +109,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-    </header>
+            </header>
     <!-- END HEADER DESKTOP-->
 
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
@@ -115,7 +132,7 @@
                             $prenom_p = $_POST["prenom_p"];
                             $date_naissance = $_POST["date_naissance"];
                             $sexe = $_POST["sexe"];
-                            $date_test = date('Y-m-j');
+                            $date_test = date('Y-m-j h:i:s');
                             
 
                                 if(!empty($_POST['subject'])) {
@@ -133,24 +150,6 @@
                                     $type="";
                                     }
 
-                                if(!empty($_POST['resultat'])) {
-                                    $resultat = $_POST['resultat'];
-                                    if($resultat == "en attente"){
-                                    $resultat = "en attente";
-                                    }
-
-                                    elseif($resultat == "negatif"){
-                                        $resultat = "negatif";
-                                    }
-
-                                    else{
-                                        $resultat = "positif";
-                                    }
-                                } else {
-                                    $resultat="";
-                                }
-
-
                                 if($sexe == "H"){
                                     $sexe = "homme";
                                 } else{
@@ -158,7 +157,7 @@
                                 }
                                 
                                 if($nom_p==''||$prenom_p==''||$date_naissance==''
-                                ||$sexe==''||$type==''||$resultat==''){
+                                ||$sexe==''||$type==''){
                                     echo'<center><h5 style="color:red; margin-bottom: 15px;">veuillez remplir le formulaire correctement svp!</h5></center>';
                                 }
 
@@ -173,7 +172,7 @@
                                         }
 
                                     //Insertion d'un nouvel étudiant
-                                    $requete_sql = "INSERT INTO test (nom_p, prenom_p, date_naissance, type, resultat, sexe, date_test, id_labo) VALUES (:nom_p, :prenom_p, :date_naissance, :type, :resultat, :sexe, :date_test, :id_labo)";
+                                    $requete_sql = "INSERT INTO test (nom_p, prenom_p, date_naissance, type, resultat, sexe, date_test, id_labo) VALUES (:nom_p, :prenom_p, :date_naissance, :type, 'en attente', :sexe, :date_test, :id_labo)";
 
                                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -182,7 +181,6 @@
                                     $p->bindParam(":prenom_p", $prenom_p);
                                     $p->bindParam(":date_naissance", $date_naissance);
                                     $p->bindParam(":type", $type);
-                                    $p->bindParam(":resultat", $resultat);
                                     $p->bindParam(":sexe", $sexe);
                                     $p->bindParam(":date_test", $date_test);
                                     $p->bindParam(":id_labo", $id_labo);
@@ -272,20 +270,7 @@
                                 <div class="select-dropdown"></div>
                             </div>
                         </div>
-                        <div class="input-group">
-                            <label class="label">résultat de test</label>
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="resultat"  id="resultat">
-                                <option disabled="disabled" selected="selected" >Choisir une option</option>
-                                    <option id="attente">en attente</option>
-                                    <option id="negatif">negatif</option>
-                                    <option id="positif">positif</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div><br><br>
-                            
-
-                        </div>
+                        
                         <p id="error_msg" style="color:red;"></p>
                         <div class="p-t-15">
                         <button class="btn btn--radius-2 btn--blue" type="submit" name="creat-btn">

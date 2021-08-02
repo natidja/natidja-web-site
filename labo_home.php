@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();  ?>
 <?php  
 
                   include("Auth_pub.php");
@@ -90,7 +90,7 @@
                 <div class="header3-wrap">
                     <div class="header__logo" style="margin-left:25px;">
                         <a href="labo_home.php">
-                            <img src="images/logo_nav_white.png" alt="CoolAdmin"  style="height:120px; width:180px" />
+                            <img src="images/icon/logo-white.png" alt="CoolAdmin" height="90%" width="180px"/>
                         </a>
                     </div>
 
@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="content">
                                     <a class="js-acc-btn" href="#" style="text-decoration: none;"> 
-                                        <?php echo $_SESSION["nom_labo"];?> 
+                                        <?php echo$nom;?> 
                                         </a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
@@ -115,7 +115,7 @@
                                         </div>
                                         <div class="content">
                                             <h5 class="name">
-                                                <a href="#" style="text-decoration: none;"><?php echo$_SESSION["nom_labo"];?> </a>
+                                                <a href="#" style="text-decoration: none;"><?php echo$nom;?> </a>
                                             </h5>
                                             <span class="email"><?php echo$_SESSION["pseudo_labo"];?> </span>
                                         </div>
@@ -136,11 +136,11 @@
 
         <!-- HEADER MOBILE-->
         <header class="header-mobile header-mobile-2 d-block d-lg-none">
-            <div class="header-mobile__bar">
+            <div >
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="labo_home.php">
-                            <img src="images/logo_nav_white.png" alt="CoolAdmin" style="height:120px; width:180px;"/>
+                        <a class="logo" href="index.html">
+                            <img src="images/icon/logo-white.png" alt="CoolAdmin" height="45px" width="155px" style="margin-top: 7px;"  />
                         </a>
                         </button>
                     </div>
@@ -156,7 +156,7 @@
                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                         </div>
                         <div class="content">
-                            <a class="js-acc-btn" href="#"><?php echo$_SESSION["nom_labo"];?> </a>
+                            <a class="js-acc-btn" href="#"><?php echo$nom;?> </a>
                         </div>
                         <div class="account-dropdown js-dropdown">
                             <div class="info clearfix">
@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="content">
                                     <h5 class="name">
-                                        <a href="labo_home.php"><?php echo$_SESSION["nom_labo"];?> </a>
+                                        <a href="labo_home.php"><?php echo$nom;?> </a>
                                     </h5>
                                     <span class="email"><?php echo$_SESSION["pseudo_labo"];?> </span>
                                 </div>
@@ -194,7 +194,7 @@
                             <div class="statistic__item statistic__item--green">
                                 <h2 class="number"><?php
                              echo $negatif; 
-                
+                            
                              ?></h2>
                                 <span class="desc">CAS NÉGATIF</span>
                             </div>
@@ -251,7 +251,7 @@
                                             <th>date de naissance</th>
                                             <th>resultat</th>
                                             <th>Type</th>
-                                            <th ></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody >
@@ -264,7 +264,6 @@
                             $sexe = $tuple['sexe'];
                             $date_naissance = $tuple['date_naissance'];
                             $resultat_p = $tuple['resultat'];
-                            $id_test = $tuple['id_test'];
                             $type_t = $tuple['type'];
 
 

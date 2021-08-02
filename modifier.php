@@ -1,4 +1,22 @@
-<?php session_start() ?>
+<?php session_start(); ?>
+<?php 
+           include("Auth_pub.php");
+            try {
+                $requete_sql = "select * from labo where adresse_email ='$_SESSION[pseudo_labo]' and pwd ='$_SESSION[mdp_labo]'";
+
+                        $result = $conn->query($requete_sql);
+
+                        while($tuple = $result->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
+                            $id_labo= $tuple['id_labo'];
+                            $nom = $tuple['nom_labo'];
+                            $wilaya = $tuple['wilaya'];
+                            $email = $tuple['adresse_email'];
+                        }
+                        $conn = null;
+                    } catch (PDOException $e) {
+                        echo "Erreur ! " . $e->getMessage() . "<br/>";
+                    }
+?>
 <?php
 include("Auth_pub.php");
 //récuperation id test de la ligne
@@ -83,12 +101,12 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
 
 <body>
     <!-- HEADER DESKTOP-->
-    <header class="header-desktop3 d-none d-lg-block">
+     <header class="header-desktop3 d-none d-lg-block">
         <div class="section__content section__content--p35">
             <div class="header3-wrap">
                 <div class="header__logo">
                     <a href="labo_home.php">
-                        <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                        <img src="images/icon/logo-white.png" alt="CoolAdmin"  height="90%" width="180px"/>
                     </a>
                 </div>
 
@@ -100,7 +118,7 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                 <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                             </div>
                             <div class="content">
-                                <a class="js-acc-btn" href="#" style="text-decoration: none;"><?php echo$_SESSION["nom_labo"];?></a>
+                                <a class="js-acc-btn" href="#" style="text-decoration: none;"><?php echo$nom;?></a>
                             </div>
                             <div class="account-dropdown js-dropdown">
                                 <div class="info clearfix">
@@ -111,7 +129,7 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                     </div>
                                     <div class="content">
                                         <h5 class="name">
-                                            <a href="#" style="text-decoration: none;"><?php echo$_SESSION["nom_labo"];?></a>
+                                            <a href="#" style="text-decoration: none;"><?php echo$nom;?></a>
                                         </h5>
                                         <span class="email"><?php echo $_SESSION["pseudo_labo"];?></span>
                                     </div>
@@ -270,10 +288,7 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                     <option id="negatif" selected="selected">negatif</option>
                                     <option id="positif">positif</option>
                                 </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                            
-                        </div>';}
+                                <div class="select-dropdown"></div>';}
                         else{
                             echo'<div class="input-group">
                         <label class="label">résultat de test</label>
@@ -283,12 +298,13 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                 <option id="negatif">negatif</option>
                                 <option id="positif" selected="selected">positif</option>
                             </select>
-                            <div class="select-dropdown"></div>
-                        </div>
-                        </div>'; }?>
-                        
-                            <label class="custom-file-upload" style=" font-family: calibri;
-                                        padding:17px;
+                            <div class="select-dropdown"></div>'; }?>
+                        </div><br><br>
+                        <label class="custom-file-upload" style=" font-family: calibri;
+                                        padding-right:30.6px;
+                                        padding-left:30.6px;
+                                        padding-top:17px;
+                                        padding-bottom:17px;
                                         -webkit-border-radius: 25px;
                                         -moz-border-radius: 5px;
                                         border: 1px  #BBB; 
@@ -296,8 +312,10 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                         background-color: #DDD;
                                         cursor:pointer;
                                         color:white">
-                                 <input type="file" name="avatar" id="avatar" >   
-                            </label><br><br>
+                                 <input type="file" name="avatar" id="avatar" style=" display: none;">
+                                      importer le resultat
+                            </label>
+                        </div>
 
                         <div class="p-t-15">
 
