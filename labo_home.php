@@ -136,11 +136,11 @@
 
         <!-- HEADER MOBILE-->
         <header class="header-mobile header-mobile-2 d-block d-lg-none">
-            <div >
+            <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin" height="45px" width="155px" style="margin-top: 7px;"  />
+                        <a class="logo" href="labo_home.php">
+                            <img src="images/icon/logo-white.png" alt="CoolAdmin" height="50%" width="100px" />
                         </a>
                         </button>
                     </div>

@@ -53,7 +53,6 @@
                     {
                       $recherche = htmlspecialchars($_GET['search']);
                       $req2 = "SELECT * FROM test where id_labo= '$id_labo' and nom_p LIKE '%".$recherche."%' ORDER BY id_test DESC";
-
                       $alluser = $conn->query($req2);
                     }
                 else{

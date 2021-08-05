@@ -105,13 +105,13 @@
                 <?php
                     try{
                     include("Auth_pub.php");
-                    $req_sql = "SELECT * FROM patient WHERE id_test= (SELECT MAX(id_test) FROM test)";
-                    $result = $conn->query($req_sql);
-                    while($tuple = $result->fetch(PDO::FETCH_ASSOC)){
-                        $nom_p = $tuple['nom_p'];
-                        $prenom_p = $tuple['prenom_p'];
-                        $pseudo= $tuple['pseudo'];
-                        $mdp= $tuple['mdp'];
+                    $req_sql = "SELECT * FROM patient WHERE id_test='$_SESSION[id_test]'";
+                    $result2 = $conn->query($req_sql);
+                    while($tuple2 = $result2->fetch(PDO::FETCH_ASSOC)){
+                        $nom_p = $tuple2['nom_p'];
+                        $prenom_p = $tuple2['prenom_p'];
+                        $pseudo= $tuple2['pseudo'];
+                        $mdp= $tuple2['mdp'];
                     }
                     echo "Nom: &nbsp;" . $nom_p . "<br/> Prenom: &nbsp;" . $prenom_p . "<br/>";
                     echo "Pseudo: &nbsp;" . $pseudo . "<br/> Mots De Passe: &nbsp;" . $mdp . "<br/>";
@@ -125,7 +125,7 @@
 
     <div style="text-align:center; margin-top:25px ">
           <button class="btn btn-primary hidden-print" onclick="window.print()" ><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-          <a href="labo_home.php" style="margin-left:25px ;" class="hidden-print">
+          <a href="labo_home.php" style="margin-left:25px ;">
               <button class="btn btn-primary hidden-print" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</button>
           </a>
     </div>

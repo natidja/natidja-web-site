@@ -1,5 +1,6 @@
 <?php session_start(); ?>
-<?php 
+
+<?php
            include("Auth_pub.php");
             try {
                 $requete_sql = "select * from labo where adresse_email ='$_SESSION[pseudo_labo]' and pwd ='$_SESSION[mdp_labo]'";
@@ -56,7 +57,7 @@
 
     <!-- Main CSS-->
     <link href="css/creat_style.css" rel="stylesheet" media="all">
-    
+
 </head>
 
 <body>
@@ -123,9 +124,9 @@
                         }else{ }
 
                         function creat() {
-                            
+
                             date_default_timezone_set('Africa/Algiers');
-                            include("Auth_pub.php"); 
+                            include("Auth_pub.php");
 
                             //$pseudo_labo = $_POST["pseudo_labo"];
                             $nom_p = $_POST["nom_p"];
@@ -133,7 +134,7 @@
                             $date_naissance = $_POST["date_naissance"];
                             $sexe = $_POST["sexe"];
                             $date_test = date('Y-m-j h:i:s');
-                            
+
 
                                 if(!empty($_POST['subject'])) {
                                     $type = $_POST['subject'];
@@ -155,7 +156,7 @@
                                 } else{
                                     $sexe = "femme";
                                 }
-                                
+
                                 if($nom_p==''||$prenom_p==''||$date_naissance==''
                                 ||$sexe==''||$type==''){
                                     echo'<center><h5 style="color:red; margin-bottom: 15px;">veuillez remplir le formulaire correctement svp!</h5></center>';
@@ -164,7 +165,7 @@
                                 else{
                                     try {
                                     //Création d'une connexion avec le SGBD
-                    
+
                                         $req = "select id_labo from labo where adresse_email='$_SESSION[pseudo_labo]'";
                                         $res = $conn->query($req);
                                         while($tu = $res->fetch(PDO::FETCH_ASSOC)){
@@ -270,7 +271,7 @@
                                 <div class="select-dropdown"></div>
                             </div>
                         </div>
-                        
+
                         <p id="error_msg" style="color:red;"></p>
                         <div class="p-t-15">
                         <button class="btn btn--radius-2 btn--blue" type="submit" name="creat-btn">
@@ -282,8 +283,6 @@
             </div>
         </div>
     </div>
-    
-                            
 
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>

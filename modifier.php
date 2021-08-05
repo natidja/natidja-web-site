@@ -24,12 +24,6 @@ include("Auth_pub.php");
 $id_test = $_POST['edit_id'];
 
 //récuperation password client avant suppression
-$requete_p= "select * from patient where id_test='$id_test' ";
-$result_p = $conn->query($requete_p);
-while($tuple = $result_p->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
-    $mdp = $tuple['mdp'];
-    
-}
 
 //récuperation données patient 
 $requete_m= "select * from test where id_test='$id_test' ";
@@ -43,16 +37,35 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
     $resultat_p = $tuple['resultat'];
     $type_t=$tuple['type'];
 }
-
+        $requete_p= "select * from patient where nom_p='$nom_p'and prenom_p='$prenom_p'and date_naissance='$date_naissance' ";
+        $result_p = $conn->query($requete_p);
+        while($tuple = $result_p->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
+            $mdp = $tuple['mdp'];
+        }
 
 //suppression des deux tables 
-$requete_sql = "DELETE FROM patient where id_test = '$id_test'";
+        $requete_sql0 = "SELECT * FROM patient where nom_p='$nom_p'and prenom_p='$prenom_p'and date_naissance='$date_naissance'";
+        $result0 = $conn->query($requete_sql0);
+    
+        while($tuple0 = $result0->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
+            $id_p = $tuple0['id_p'];
+            $nbr_test = $tuple0['nbr_test'];
+        }
+        if($nbr_test == 1){
+            $requete_sql = "DELETE FROM patient where id_p = '$id_p'";
+            $conn->query($requete_sql);
 
-        $result = $conn->query($requete_sql);
+            $requete_sql2 = "DELETE FROM test where id_test = '$id_test'";
+            $conn->query($requete_sql2);
+        }
+        else{
+            $requete_sql3 = 'UPDATE patient SET nbr_test=nbr_test-1 where id_p="$id_p"';
+            $conn->exec($requete_sql3);
 
-    $requete_sql2 = "DELETE FROM test where id_test = '$id_test'";
-
-    $result2 = $conn->query($requete_sql2);
+            $requete_sql4 = "DELETE FROM test where id_test = '$id_test'";
+            $conn->query($requete_sql4);
+        }
+        
 
     
 ?>
@@ -136,11 +149,11 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                 </div>
                                 <div class="account-dropdown__body">
                                     <div class="account-dropdown__footer">
-                                        <a href='labo_home.html' Broken Link  style="text-decoration: none;">
+                                        <a href='labo_home.php' Broken Link  style="text-decoration: none;">
                                             <i class="zmdi zmdi-home"></i>Home</a>
                                     </div>
                                     <div class="account-dropdown__footer">
-                                        <a href='login_labo.html ' Broken Link  style="text-decoration: none;">
+                                        <a href='login_labo.php' Broken Link  style="text-decoration: none;">
                                             <i class="zmdi zmdi-power"></i>Déconnecter</a>
                                     </div>
                                 </div>
@@ -288,7 +301,10 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                     <option id="negatif" selected="selected">negatif</option>
                                     <option id="positif">positif</option>
                                 </select>
-                                <div class="select-dropdown"></div>';}
+                                <div class="select-dropdown"></div>
+                            </div>
+                            
+                        </div>';}
                         else{
                             echo'<div class="input-group">
                         <label class="label">résultat de test</label>
@@ -298,44 +314,51 @@ $requete_sql = "DELETE FROM patient where id_test = '$id_test'";
                                 <option id="negatif">negatif</option>
                                 <option id="positif" selected="selected">positif</option>
                             </select>
-                            <div class="select-dropdown"></div>'; }?>
-                        </div><br><br>
-                        <label class="custom-file-upload" style=" font-family: calibri;
-                                        padding-right:30.6px;
-                                        padding-left:30.6px;
-                                        padding-top:17px;
-                                        padding-bottom:17px;
-                                        -webkit-border-radius: 25px;
-                                        -moz-border-radius: 5px;
-                                        border: 1px  #BBB; 
-                                        text-align: center;
-                                        background-color: #DDD;
-                                        cursor:pointer;
-                                        color:white">
-                                 <input type="file" name="avatar" id="avatar" style=" display: none;">
-                                      importer le resultat
-                            </label>
+                            <div class="select-dropdown"></div>
                         </div>
+                        </div>'; }?>
+                        
+                             <input type="file" name="avatar" id="avatar" class="custom-file-input">
+                            <br><br>
+                            
 
                         <div class="p-t-15">
 
                         <?php echo '<form action="insert_test_edit.php" method="POST">
-                                    <input type="hidden" name="mdp" value="'.$mdp.'  ">
+                                    <input type="hidden" name="mdp" value="'.$mdp.'">
                                     <button class="btn btn--radius-2 btn--blue" type="submit">
                                 Modifier
                             </button>
                                     </form>'; ?>
                         
-                        
-                                    
-                        
+
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
+    <style type="text/css">
+                                .custom-file-input::-webkit-file-upload-button {
+                                  visibility: hidden;
+                                }
+                                .custom-file-input::before {
+                                  content: 'importer le resultat';
+                                  display: inline-block;
+                                  background: linear-gradient(top, #f3f3f3, #e3e3e3);
+                                  border: 3px solid #f3f3f3;
+                                  border-radius: 25px;
+                                  padding: 10px ; 
+                                  cursor: pointer;
+                                  text-shadow: 1px 1px #E5E5E5;
+                                  font-weight: 400;
+                                  font-size: 10pt;
+                                }
+                                .custom-file-input:hover::before {
+                                  border-color: #E5E5E5;
+                                }
+                                
+    </style>
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/jquery-3.2.1.min.js"></script>

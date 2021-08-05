@@ -10,7 +10,7 @@
 	$sexe = $_POST["sexe"];
 	$type = $_POST["subject"];
 	$resultat = $_POST["resultat"];
-	$avatar= $_POST['avatar'];
+	$avatar= $_POST["avatar"];
 	$mdp = $_POST["mdp"];
 	$date_test = date('Y-m-j h:i:s');
 
@@ -72,17 +72,33 @@
 				$p->execute();
 
 				$pseudo= $nom_p ."_". $prenom_p."";
-				
-
-				
-				$req_sql="insert into patient(nom_p, prenom_p, date_naissance, resultat, id_test, sexe, avatar) SELECT nom_p, prenom_p, date_naissance, resultat, id_test, sexe, avatar FROM test where nom_p='$nom_p'and prenom_p='$prenom_p' and date_naissance='$date_naissance' and type='$type' and resultat='$resultat'";
-                $conn->exec($req_sql);
-				
-				$requete_sql2 ="UPDATE patient SET pseudo = '$pseudo', mdp='$mdp' WHERE nom_p='$nom_p'and prenom_p='$prenom_p'";
-				$conn->exec($requete_sql2);
-
-				
-
+				$requete_sql3= "SELECT * from test WHERE nom_p='$nom_p'and prenom_p='$prenom_p'and date_naissance='$date_naissance'and id_labo='$id_labo'";
+                                    $res1 = $conn->query($requete_sql3);
+                                    if($res1->rowCount() > 1){  
+                                        while($tup = $res1->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
+                                            $_SESSION['id_test']= $tup['id_test'];
+                                            $req_sql3 = "SELECT * from patient where id_test='$_SESSION[id_test]'";
+                                             $res2 = $conn->query($req_sql3);
+                                             while($tup2 = $res2->fetch(PDO::FETCH_ASSOC)){
+                                                $nbr_test= $tup2['nbr_test'];
+                                                }
+                                                $nbr_test= $nbr_test+1;
+                                                $req_sql4="UPDATE patient SET nbr_test='$nbr_test' where id_test='$_SESSION[id_test]'";
+                                                $conn->exec($req_sql4);
+                                                break;
+                                                }    
+                                        }
+                                    else{
+                                        $req_sql6="INSERT INTO patient (nom_p, prenom_p, date_naissance, id_test) SELECT nom_p, prenom_p, date_naissance, id_test FROM test where nom_p='$nom_p'and prenom_p='$prenom_p'and date_naissance='$date_naissance'and id_labo='$id_labo'";
+                                            $conn->exec($req_sql6);
+                                            $requete_sql6 = "SELECT id_test from test where nom_p='$nom_p'and prenom_p='$prenom_p'and date_naissance='$date_naissance'and id_labo='$id_labo'";
+                                            $result4 = $conn->query($requete_sql6);
+                                            while($tuple3 = $result4->fetch(PDO::FETCH_ASSOC)){
+                                            $_SESSION['id_test']= $tuple3['id_test'];
+                                                }
+                                            $requete_sql7 ="UPDATE patient SET pseudo='$pseudo',mdp='$mdp', nbr_test='1' WHERE id_test='$_SESSION[id_test]'";
+                                                $conn->exec($requete_sql7);
+                                    }
 				$req_sql3 = "SELECT count(*) as 'nbr' from test where resultat = 'positive'";
 				$res = $conn->query($req_sql3);
 

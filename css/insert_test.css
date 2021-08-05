@@ -494,6 +494,10 @@
     right: 0;
 }
 
+.header-mobile .header-mobile__bar {
+    padding: 15px 0;
+}
+
 .header-mobile .header-mobile-inner {
     display: -webkit-box;
     display: -webkit-flex;

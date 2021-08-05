@@ -39,11 +39,11 @@
 
         <!-- HEADER MOBILE-->
         <header class="header-mobile header-mobile-2 d-block d-lg-none">
-            <div>
+            <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin" height="60px" width="170px" style="margin-top: 7px;"  />
+                            <img src="images/icon/logo-white.png" alt="CoolAdmin" height="50%" width="100px"  />
                         </a>
                         </button>
                     </div>
@@ -96,22 +96,12 @@
                             $resultat= $tuple2['resultat'];
                             $avatar= $tuple2['avatar'];
                             $date_test = $tuple2['date_test'];
-                            if($resultat!="en attente"){
-                                ?> 
-                                <center style="margin-top:30px">
-                                <p>test :<?= $date_test ?> :<?= $resultat ?>
-                                <br>pour plus d'information<a href="resultat/<?=$avatar?>"> click ici</a></p> 
-                                </center>
-                                <?php
-                            }
-                            else{
-                                ?> 
-                                <center style="margin-top:30px">
-                                <p>test :<?= $date_test ?> :<?= $resultat ?></p> 
-                                </center>
-                                <?php
-                            }
-                
+                ?> 
+                <center style="margin-top:30px">
+                <p>Résultat :<?= $resultat ?> </a>
+                <p>test :<?= $date_test ?>  <a href="resultat/<?=$avatar?>"> <?=$avatar?></a></p> 
+                </center>
+                <?php
              } }$conn = null;
 
                      } catch (PDOException $e) {
