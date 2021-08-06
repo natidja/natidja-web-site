@@ -58,13 +58,37 @@
                             <button class="login100-form-btn" style="color:white; font-family: Poppins-Bold;" type="submit"  >
                             CONNEXION</button>
                     </div>
-                    
-
-                    <div class="text-center p-t-136">
-                        <a class="txt2" href="index.php">
-                            <i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i> Je suis un identifiant
+                    <center>
+                      <div style="margin-top:50px;">
+                        <a href="https://www.facebook.com/Natidja-705496370304851" target="_blank">
+                          <img src="images/icons/facebook.png" alt="Facebook" style="margin:0px 7.5px 0px 7.5px; height:40px; width:40px;">
                         </a>
-                    </div>
+
+                        <a href="https://www.instagram.com/natidja.dz/" target="_blank">
+                          <img src="images/icons/instagram.png" alt="Instagram" style="margin:0px 7.5px 0px 7.5px; height:40px; width:40px;">
+                        </a>
+
+                        <a href="mailto: natidjadz@gmail.com" target="_blank">
+                          <img src="images/icons/gmail.png" alt="Google" style="margin:0px 7.5px 0px 7.5px; height:40px; width:40px;">
+                        </a>
+
+                        <a href="https://twitter.com/dja_nati" target="_blank">
+                          <img src="images/icons/twitter.png" alt="Twitter" style="margin:0px 7.5px 0px 7.5px; height:40px; width:40px;">
+                        </a>
+
+                        <a href="https://www.linkedin.com/company/natidja" target="_blank">
+                          <img src="images/icons/linkedin.png" alt="linkedin" style="margin:0px 7.5px 0px 7.5px; height:40px; width:40px;">
+                        </a>
+                      </div>
+                    </center>
+
+                    <center>
+                      <div style="margin-top:75px;">
+                          <a class="txt2" href="index.php">
+                              <i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i> Je suis un identifiant
+                          </a>
+                      </div>
+                    </center>
                 </form>
             </div>
         </div>
