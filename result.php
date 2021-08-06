@@ -58,7 +58,7 @@
                         <div class="image">
                         </div>
 
-                        
+
                     </div>
                 </div>
             </div>
@@ -76,14 +76,14 @@
                     $_SESSION["pseudo_pat"] = $_POST["user"];
                     $_SESSION["mdp_pat"] = $_POST["pass"];
                      try{
-                     
+
                      $req_sql = "SELECT * FROM patient WHERE pseudo='$_SESSION[pseudo_pat]' and mdp='$_SESSION[mdp_pat]'";
                      $res = $conn->query($req_sql);
                      if($res->rowCount() == 0){
                         //Authentification échouée !!!
                         header("Location: index.php");
                         die("Erreur de nom d'utilisateur ou de mot de passe !!");
-                    } 
+                    }
                     else {
                      while($tuple = $res->fetch(PDO::FETCH_ASSOC)){
                          $nom_p = $tuple['nom_p'];
@@ -95,9 +95,12 @@
                         while($tuple2 = $res2->fetch(PDO::FETCH_ASSOC)){
                             $avatar= $tuple2['avatar'];
                             $date_test = $tuple2['date_test'];
-                ?> 
+                ?>
                 <center style="margin-top:30px">
-                <p>test :<?= $date_test ?>  <a href="resultat/<?=$avatar?>"> <?=$avatar?></a></p> 
+                <?php
+                  if($avatar==null) echo '<p>test : ' . $date_test . ' : en attente</p> ';
+                  else echo'<p>test : ' . $date_test . '<a href="resultat/' . $avatar . '" target="_blank"> : ' . $avatar . '</a></p> ';
+                 ?>
                 </center>
                 <?php
              } }$conn = null;
@@ -129,7 +132,7 @@
 
         <!-- Main JS-->
         <script src="js/main.js"></script>
-        <style type="text/css">  
+        <style type="text/css">
         body{
         background-color:#e5e5e5;
         }
@@ -138,7 +141,7 @@
         flex-wrap: wrap;
         justify-content: center;
         }
-      
+
       .card {
         margin: 20px;
         padding: 20px 60px 20px 60px;
@@ -150,12 +153,12 @@
         transition: all 0.2s;
         justify-content: center;
         }
-      
+
       .card:hover {
         box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
         transform: scale(1.01);
         }
-      
+
       .card__link,
       .card__exit,
       .card__icon {
@@ -163,7 +166,7 @@
         text-decoration: none;
         color: rgba(255, 255, 255, 0.9);
         }
-      
+
       .card__link::after {
         position: absolute;
         top: 25px;
@@ -174,34 +177,34 @@
         background-color: rgba(255, 255, 255, 0.6);
         transition: all 0.5s;
         }
-      
+
       .card__link:hover::after {
         width: 100%;
         }
-      
+
       .card__exit {
         grid-row: 1/2;
         justify-self: end;
         }
-      
-      
+
+
       .card__title {
         grid-row: 3/4;
         font-weight: 400;
         color: #ffffff;
         }
-      
-      
-      
+
+
+
       /* CARD BACKGROUNDS */
-      
+
       .card-1 {
         background: #ffffff;
         }
-      
-      
+
+
       /* RESPONSIVE */
-      
+
         .cards {
           justify-content: center;
         }
@@ -214,7 +217,7 @@
         font-size: 25px;
         }
 }
-    
+
   </style>
 </body>
 </html>
