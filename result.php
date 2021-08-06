@@ -93,12 +93,10 @@
                         $req_sql2 = "SELECT * FROM test where nom_p='$nom_p' and prenom_p='$prenom_p' order by id_test desc";
                         $res2 = $conn->query($req_sql2);
                         while($tuple2 = $res2->fetch(PDO::FETCH_ASSOC)){
-                            $resultat= $tuple2['resultat'];
                             $avatar= $tuple2['avatar'];
                             $date_test = $tuple2['date_test'];
                 ?> 
                 <center style="margin-top:30px">
-                <p>Résultat :<?= $resultat ?> </a>
                 <p>test :<?= $date_test ?>  <a href="resultat/<?=$avatar?>"> <?=$avatar?></a></p> 
                 </center>
                 <?php

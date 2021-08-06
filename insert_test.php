@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php 
+<?php
            include("Auth_pub.php");
             try {
                 $requete_sql = "select * from labo where adresse_email ='$_SESSION[pseudo_labo]' and pwd ='$_SESSION[mdp_labo]'";
@@ -14,7 +14,7 @@
                         }
                         $conn = null;
                     } catch (PDOException $e) {
-                        echo "Erreur ! " . $e->getMessage() . "<br/>";
+                        echo "Erreur !" . $e->getMessage() . "<br/>";
                     }
 ?>
 
@@ -99,7 +99,7 @@
 
     <div class="cards">
         <div class="card card-1">
-            <center><h1 class="title">Votre informations</h1></center><br>
+            <center><h1 class="title">informations personnelles</h1></center><br>
             <div>
                 <h3 style="text-align:center;">www.natidja.com<br></h3>
                 <?php
@@ -151,7 +151,7 @@
 
         <!-- Main JS-->
         <script src="js/main.js"></script>
-        <style type="text/css">  
+        <style type="text/css">
         body{
         background-color:#e5e5e5;
         }
@@ -160,7 +160,7 @@
         flex-wrap: wrap;
         justify-content: center;
         }
-      
+
       .card {
         margin: 20px;
         padding: 20px 60px 20px 60px;
@@ -172,12 +172,12 @@
         transition: all 0.2s;
         justify-content: center;
         }
-      
+
       .card:hover {
         box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
         transform: scale(1.01);
         }
-      
+
       .card__link,
       .card__exit,
       .card__icon {
@@ -185,7 +185,7 @@
         text-decoration: none;
         color: rgba(255, 255, 255, 0.9);
         }
-      
+
       .card__link::after {
         position: absolute;
         top: 25px;
@@ -196,34 +196,34 @@
         background-color: rgba(255, 255, 255, 0.6);
         transition: all 0.5s;
         }
-      
+
       .card__link:hover::after {
         width: 100%;
         }
-      
+
       .card__exit {
         grid-row: 1/2;
         justify-self: end;
         }
-      
-      
+
+
       .card__title {
         grid-row: 3/4;
         font-weight: 400;
         color: #ffffff;
         }
-      
-      
-      
+
+
+
       /* CARD BACKGROUNDS */
-      
+
       .card-1 {
         background: #ffffff;
         }
-      
-      
+
+
       /* RESPONSIVE */
-      
+
         .cards {
           justify-content: center;
         }
@@ -235,7 +235,7 @@
         .title{
         font-size: 25px;
         }
-    
+
   </style>
 </body>
 </html>

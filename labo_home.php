@@ -1,13 +1,13 @@
 <?php session_start();  ?>
-<?php  
+<?php
 
                   include("Auth_pub.php");
                   try {
-            
+
                     //Récupération de tous les utilisateurs
                      $requete_sql = "select * from labo where adresse_email='$_SESSION[pseudo_labo]' and pwd ='$_SESSION[mdp_labo]'";
 
-                    $result = $conn->query($requete_sql); 
+                    $result = $conn->query($requete_sql);
                     if($result->rowCount() == 0){
                     //Authentification échouée !!!
                     header("Location: login_labo.php");
@@ -24,29 +24,9 @@
                             $email = $tuple['adresse_email'];
                         }
 
-                        $req_sql3 = "SELECT count(*) as 'nbr' from test where resultat = 'positif' and id_labo='$id_labo'";
-                        $res = $conn->query($req_sql3);
 
-                while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
-                    $positif = $tup['nbr'];
-                }
-
-                $req_sql4 = "SELECT count(*) as 'nbr' from test where resultat = 'negatif' and id_labo='$id_labo'";
-                $res = $conn->query($req_sql4);
-
-                while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
-                    $negatif = $tup['nbr'];
-                }
-
-
-                $req_sql5 = "SELECT count(*) as 'nbr' from test where resultat = 'en attente' and id_labo='$id_labo'";
-                $res = $conn->query($req_sql5);
-
-                while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
-                    $attente = $tup['nbr'];
-                }
                         $requete_l= "SELECT * from test WHERE id_labo='$id_labo' order by id_test desc ";
-                        $result_l = $conn->query($requete_l);  
+                        $result_l = $conn->query($requete_l);
                     }
                       //Clôture de la connexion
                       $conn = null;
@@ -102,8 +82,8 @@
                                     <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                 </div>
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#" style="text-decoration: none;"> 
-                                        <?php echo$nom;?> 
+                                    <a class="js-acc-btn" href="#" style="text-decoration: none;">
+                                        <?php echo$nom;?>
                                         </a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
@@ -187,45 +167,11 @@
         <div class="page-content--bgf7">
 
             <!-- STATISTIC-->
-            <section class="statistic statistic2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item statistic__item--green">
-                                <h2 class="number"><?php
-                             echo $negatif; 
-                            
-                             ?></h2>
-                                <span class="desc">CAS NÉGATIF</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item statistic__item--orange">
-                                <h2 class="number"><?php
-                             echo $attente; 
-                
-                             ?></h2>
-                                <span class="desc">EN ATTENTE</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item statistic__item--red">
-                                <h2 class="number">
-                                <?php
-                             echo $positif; 
-                
-                             ?>
-                             </h2>
-                             
-                                <span class="desc">CAS POSITIF</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
             <!-- END STATISTIC-->
 
             <!-- DATA TABLE-->
+            <br>
             <section class="p-t-20">
                 <div class="container">
                     <div class="row">
@@ -250,13 +196,12 @@
                                             <th>sexe</th>
                                             <th>date de naissance</th>
                                             <th>resultat</th>
-                                            <th>Type</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody >
-                                    <?php 
-                                    
+                                    <?php
+
 
                         while($tuple = $result_l->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
                             $nom_p = $tuple['nom_p'];
@@ -264,7 +209,6 @@
                             $sexe = $tuple['sexe'];
                             $date_naissance = $tuple['date_naissance'];
                             $resultat_p = $tuple['resultat'];
-                            $type_t = $tuple['type'];
 
 
                             echo '<tr class="tr-shadow">
@@ -273,36 +217,22 @@
                             if($sexe=="homme") echo'<td class="desc" style="color:blue">'.$sexe.'</td>';
                             else  echo'<td class="desc" style="color:#E05297">'.$sexe.'</td>';
 
-                            
+
                             echo'<td>'.$date_naissance.'</td>';
-                            
-                            if($resultat_p=="positif"){
+
+                            if($resultat_p=="pres"){
                                 echo'
                                 <td id="result">
-                                    <span class="status--waiting" style="color:red" ><b>'.$resultat_p.'</b></span>
-                                </td>';
-                            }
-                            else if($resultat_p=="negatif"){
-                                echo'
-                                <td id="result" >
-                                    <span class="status--waiting" style="color:green"><b>'.$resultat_p.'</b></span>
-                                </td>';
-                            }
-                            else if($resultat_p=="en attente"){
-                                echo'
-                                <td id="result" >
-                                    <span class="status--waiting" style="color:orange"><b>'.$resultat_p.'</b></span>
+                                    <span class="status--waiting" style="color:green" ><b>'.$resultat_p.'</b></span>
                                 </td>';
                             }else{
                                 echo'
-                                <td id="result" style="color:black">
+                                <td id="result" style="color:orange">
                                     <span class="status--waiting" ><b>'.$resultat_p.'</b></span>
                                 </td>';
                             }
-                            echo'<td>'.$type_t.' </td>';
                                 echo'<td>
                                 <div class="table-data-feature">
-        
                                     <form action="modifier.php" method="POST" style="margin-right:5px;">
                                         <input type="hidden" name="edit_id" value="'.$tuple['id_test'].'">
                                         <button type="submit" name="edit_btn " class="item" data-toggle="tooltip" data-placement="top" title="edit">
@@ -311,8 +241,8 @@
 
                                     <form action="supprimer.php" method="POST">
                                     <input type="hidden" name="delete_nomp" value="'.$tuple['id_test'].'">
-                                    <button type="submit" name="delete_btn " class="item" data-toggle="tooltip" data-placement="top" title="supprimer"> 
-                                    <i class="zmdi zmdi-delete"></i> </button> 
+                                    <button type="submit" name="delete_btn " class="item" data-toggle="tooltip" data-placement="top" title="supprimer">
+                                    <i class="zmdi zmdi-delete"></i> </button>
                                     </form>
                                 </div>
                             </td>
@@ -321,7 +251,7 @@
                         } ?>
                                     </tbody>
                                 </table>
-                                
+
                             </div>
                         </div>
                     </div>

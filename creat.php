@@ -1,6 +1,5 @@
 <?php session_start(); ?>
-
-<?php
+<?php 
            include("Auth_pub.php");
             try {
                 $requete_sql = "select * from labo where adresse_email ='$_SESSION[pseudo_labo]' and pwd ='$_SESSION[mdp_labo]'";
@@ -57,7 +56,7 @@
 
     <!-- Main CSS-->
     <link href="css/creat_style.css" rel="stylesheet" media="all">
-
+    
 </head>
 
 <body>
@@ -124,9 +123,9 @@
                         }else{ }
 
                         function creat() {
-
+                            
                             date_default_timezone_set('Africa/Algiers');
-                            include("Auth_pub.php");
+                            include("Auth_pub.php"); 
 
                             //$pseudo_labo = $_POST["pseudo_labo"];
                             $nom_p = $_POST["nom_p"];
@@ -135,37 +134,20 @@
                             $sexe = $_POST["sexe"];
                             $date_test = date('Y-m-j h:i:s');
 
-
-                                if(!empty($_POST['subject'])) {
-                                    $type = $_POST['subject'];
-                                    if($type == "antigénique"){
-                                    $type = "antigénique";
-                                    }
-                                    elseif($type == "virologique"){
-                                        $type = "virologique";
-                                    }
-                                    else{
-                                        $type = "sérologique";
-                                    }
-                                } else {
-                                    $type="";
-                                    }
-
                                 if($sexe == "H"){
                                     $sexe = "homme";
                                 } else{
                                     $sexe = "femme";
                                 }
-
-                                if($nom_p==''||$prenom_p==''||$date_naissance==''
-                                ||$sexe==''||$type==''){
+                                
+                                if($nom_p==''||$prenom_p==''||$date_naissance=='' ||$sexe==''){
                                     echo'<center><h5 style="color:red; margin-bottom: 15px;">veuillez remplir le formulaire correctement svp!</h5></center>';
                                 }
 
                                 else{
                                     try {
                                     //Création d'une connexion avec le SGBD
-
+                    
                                         $req = "select id_labo from labo where adresse_email='$_SESSION[pseudo_labo]'";
                                         $res = $conn->query($req);
                                         while($tu = $res->fetch(PDO::FETCH_ASSOC)){
@@ -173,41 +155,64 @@
                                         }
 
                                     //Insertion d'un nouvel étudiant
-                                    $requete_sql = "INSERT INTO test (nom_p, prenom_p, date_naissance, type, resultat, sexe, date_test, id_labo) VALUES (:nom_p, :prenom_p, :date_naissance, :type, 'en attente', :sexe, :date_test, :id_labo)";
+                                    $requete_sql2 = "INSERT INTO test (nom_p, prenom_p, date_naissance, resultat, sexe, date_test, id_labo) VALUES (:nom_p, :prenom_p, :date_naissance, 'en attente', :sexe, :date_test, :id_labo)";
 
                                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                                    $p = $conn->prepare($requete_sql);
+                                    $p = $conn->prepare($requete_sql2);
                                     $p->bindParam(":nom_p", $nom_p);
                                     $p->bindParam(":prenom_p", $prenom_p);
                                     $p->bindParam(":date_naissance", $date_naissance);
-                                    $p->bindParam(":type", $type);
                                     $p->bindParam(":sexe", $sexe);
                                     $p->bindParam(":date_test", $date_test);
                                     $p->bindParam(":id_labo", $id_labo);
                                     $p->execute();
 
-                                    $pseudo= $nom_p ."_". $prenom_p."";
-                                    function passgen1($nbChar) {
-                                        $chaine ="mnoTUzS5678kVvwxy9WXYZRNCDEFrslq41GtuaHIJKpOPQA23LcdefghiBMbj0";
-                                        srand((double)microtime()*1000000);
-                                        $pass = '';
-                                        for($i=0; $i<$nbChar; $i++){
-                                            $pass .= $chaine[rand()%strlen($chaine)];
+                                    $requete_sql3= "SELECT * from test WHERE nom_p='$nom_p'and prenom_p='$prenom_p'and date_naissance='$date_naissance'and id_labo='$id_labo'";
+                                    $res1 = $conn->query($requete_sql3);
+                                    if($res1->rowCount() > 1){  
+                                        while($tup = $res1->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
+                                            $_SESSION['id_test']= $tup['id_test'];
+                                            $req_sql3 = "SELECT * from patient where id_test='$_SESSION[id_test]'";
+                                             $res2 = $conn->query($req_sql3);
+                                             while($tup2 = $res2->fetch(PDO::FETCH_ASSOC)){
+                                                $nbr_test= $tup2['nbr_test'];
+                                                }
+                                                $nbr_test= $nbr_test+1;
+                                                $req_sql4="UPDATE patient SET nbr_test='$nbr_test' where id_test='$_SESSION[id_test]'";
+                                                $conn->exec($req_sql4);
+                                                break;
+                                                }
+                                            
                                         }
-                                        return $pass;
+                                    else{
+                                        $req_sql6="INSERT INTO patient (nom_p, prenom_p, date_naissance, id_test) SELECT nom_p, prenom_p, date_naissance, id_test FROM test where nom_p='$nom_p'and prenom_p='$prenom_p'and date_naissance='$date_naissance'and id_labo='$id_labo'";
+                                            $conn->exec($req_sql6);
+                                            $pseudo= $nom_p ."_". $prenom_p."";
+                                            function passgen1($nbChar) {
+                                                $chaine ="mnoTUzS5678kVvwxy9WXYZRNCDEFrslq41GtuaHIJKpOPQA23LcdefghiBMbj0";
+                                                srand((double)microtime()*1000000);
+                                                $pass = '';
+                                                for($i=0; $i<$nbChar; $i++){
+                                                    $pass .= $chaine[rand()%strlen($chaine)];
+                                                }
+                                                return $pass;
+                                            }
+                                            $mdp= passgen1(8);
+                                            $requete_sql6 = "SELECT id_test from test where nom_p='$nom_p'and prenom_p='$prenom_p'and date_naissance='$date_naissance'and id_labo='$id_labo'";
+                                            $result4 = $conn->query($requete_sql6);
+                                            while($tuple3 = $result4->fetch(PDO::FETCH_ASSOC)){
+                                            $_SESSION['id_test']= $tuple3['id_test'];
+                                                }
+                                            $requete_sql7 ="UPDATE patient SET pseudo='$pseudo', mdp='$mdp', nbr_test='1' WHERE id_test='$_SESSION[id_test]'";
+                                                $conn->exec($requete_sql7);
                                     }
 
-                                    $mdp= passgen1(8);
-                                    $req_sql="insert into patient(nom_p, prenom_p, date_naissance, resultat, id_test, sexe) SELECT nom_p, prenom_p, date_naissance, resultat, id_test, sexe FROM test where nom_p='$nom_p'and prenom_p='$prenom_p' ";
-                                    $conn->exec($req_sql);
-                                    $requete_sql2 ="UPDATE patient SET pseudo = '$pseudo', mdp='$mdp' WHERE nom_p='$nom_p'and prenom_p='$prenom_p'";
-                                    $conn->exec($requete_sql2);
-                                    $req_sql3 = "SELECT count(*) as 'nbr' from test where resultat = 'positif'";
-                                    $res = $conn->query($req_sql3);
+                                    $req_sql8 = "SELECT count(*) as 'nbr' from test where resultat = 'positif'";
+                                    $res5 = $conn->query($req_sql8);
 
-                                    while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
-                                        $positif = $tup['nbr'];
+                                    while($tup4 = $res5->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
+                                        $positif = $tup4['nbr'];
                                     }
                                     //Clôture de la connexion
                                     echo '<script language="Javascript">
@@ -259,19 +264,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group">
-                            <label class="label">Type de test</label>
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="subject" id="subject">
-                                    <option disabled="disabled" selected="selected"  >Choisir une option</option>
-                                    <option id="antigénique" >antigénique</option>
-                                    <option id="virologique" >virologique</option>
-                                    <option id="sérologique" >sérologique</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                        </div>
-
+                        
+                        
                         <p id="error_msg" style="color:red;"></p>
                         <div class="p-t-15">
                         <button class="btn btn--radius-2 btn--blue" type="submit" name="creat-btn">
@@ -283,6 +277,8 @@
             </div>
         </div>
     </div>
+    
+                            
 
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>

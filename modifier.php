@@ -21,12 +21,12 @@
 include("Auth_pub.php");
 //récuperation id test de la ligne
 
-$id_test = $_POST['edit_id'];
+$_SESSION['id_test'] = $_POST['edit_id'];
 
 //récuperation password client avant suppression
 
 //récuperation données patient 
-$requete_m= "select * from test where id_test='$id_test' ";
+$requete_m= "select * from test where id_test='$_SESSION[id_test]' ";
 $result_m = $conn->query($requete_m);
     
 while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
@@ -35,7 +35,6 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
     $sexe = $tuple['sexe'];
     $date_naissance = $tuple['date_naissance'];
     $resultat_p = $tuple['resultat'];
-    $type_t=$tuple['type'];
 }
         $requete_p= "select * from patient where nom_p='$nom_p'and prenom_p='$prenom_p'and date_naissance='$date_naissance' ";
         $result_p = $conn->query($requete_p);
@@ -43,28 +42,6 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
             $mdp = $tuple['mdp'];
         }
 
-//suppression des deux tables 
-        $requete_sql0 = "SELECT * FROM patient where nom_p='$nom_p'and prenom_p='$prenom_p'and date_naissance='$date_naissance'";
-        $result0 = $conn->query($requete_sql0);
-    
-        while($tuple0 = $result0->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
-            $id_p = $tuple0['id_p'];
-            $nbr_test = $tuple0['nbr_test'];
-        }
-        if($nbr_test == 1){
-            $requete_sql = "DELETE FROM patient where id_p = '$id_p'";
-            $conn->query($requete_sql);
-
-            $requete_sql2 = "DELETE FROM test where id_test = '$id_test'";
-            $conn->query($requete_sql2);
-        }
-        else{
-            $requete_sql3 = 'UPDATE patient SET nbr_test=nbr_test-1 where id_p="$id_p"';
-            $conn->exec($requete_sql3);
-
-            $requete_sql4 = "DELETE FROM test where id_test = '$id_test'";
-            $conn->query($requete_sql4);
-        }
         
 
     
@@ -169,7 +146,7 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Nouveau patient</h2>
+                    <h2 class="title">Modifier</h2>
                     <form method="POST" action="insert_test_edit.php">
                      
                         <div class="row row-space">
@@ -232,92 +209,6 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
                                         </div>';
                                 }?>
                         </div>
-                        <?php if($type_t == 'antigénique')
-                        {
-                            echo('<div class="input-group">
-                            <label class="label">Type de test</label>
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="subject">
-                                    
-                                    <option id="antigénique" selected="selected" >antigénique</option>
-                                    <option id="virologique">virologique</option>
-                                    <option id="sérologique">sérologique</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                        </div>');
-                        }
-                        elseif($type_t == 'virologique')
-                        {
-                            echo('<div class="input-group">
-                            <label class="label">Type de test</label>
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="subject">
-                                    
-                                    <option id="antigénique"  >antigénique</option>
-                                    <option id="virologique" selected="selected" >virologique</option>
-                                    <option id="sérologique">sérologique</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                        </div>');
-                        }
-                        else
-                        {
-                            echo('<div class="input-group">
-                            <label class="label">Type de test</label>
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="subject">
-                                    
-                                    <option id="antigénique"  >antigénique</option>
-                                    <option id="virologique"  >virologique</option>
-                                    <option id="sérologique"selected="selected">sérologique</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                        </div>');
-                        }
-                        ?>
-                        <?php if($resultat_p =='en attente'){
-                        echo'
-                        <div class="input-group">
-                            <label class="label">résultat de test</label>
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="resultat">
-                                    <option id="en attente" selected="selected">en attente</option>
-                                    <option id="negatif">negatif</option>
-                                    <option id="positif">positif</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                        </div>';}
-                        elseif($resultat_p =='negatif'){
-                        echo'
-                        <div class="input-group">
-                            <label class="label">résultat de test</label>
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="resultat">
-                                    <option id="en attente">en attente</option>
-                                    <option id="negatif" selected="selected">negatif</option>
-                                    <option id="positif">positif</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                            
-                        </div>';}
-                        else{
-                            echo'<div class="input-group">
-                        <label class="label">résultat de test</label>
-                        <div class="rs-select2 js-select-simple select--no-search">
-                            <select name="resultat">
-                                <option id="en attente">en attente</option>
-                                <option id="negatif">negatif</option>
-                                <option id="positif" selected="selected">positif</option>
-                            </select>
-                            <div class="select-dropdown"></div>
-                        </div>
-                        </div>'; }?>
-                        
                              <input type="file" name="avatar" id="avatar" class="custom-file-input">
                             <br><br>
                             

@@ -24,40 +24,22 @@
                             $email = $tuple['adresse_email'];
                         }
 
-                        $req_sql3 = "SELECT count(*) as 'nbr' from test where resultat = 'positif' and id_labo='$id_labo'";
-                        $res = $conn->query($req_sql3);
-
-                while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
-                    $positif = $tup['nbr'];
-                }
-
-                $req_sql4 = "SELECT count(*) as 'nbr' from test where resultat = 'negatif' and id_labo='$id_labo'";
-                $res = $conn->query($req_sql4);
-
-                while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
-                    $negatif = $tup['nbr'];
-                }
-
-
-                $req_sql5 = "SELECT count(*) as 'nbr' from test where resultat = 'en attente' and id_labo='$id_labo'";
-                $res = $conn->query($req_sql5);
-
-                while($tup = $res->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
-                    $attente = $tup['nbr'];
-                }
+                        
                         $requete_l= "SELECT * from test WHERE id_labo='$id_labo' order by id_test desc ";
                         $result_l = $conn->query($requete_l);  
-                }
-                $alluser = $conn->query('SELECT * FROM test where id_labo= "$id_labo" ORDER BY id_test DESC');
-                if(isset($_GET['search']) AND !empty($_GET['search']))
-                    {
-                      $recherche = htmlspecialchars($_GET['search']);
-                      $req2 = "SELECT * FROM test where id_labo= '$id_labo' and nom_p LIKE '%".$recherche."%' ORDER BY id_test DESC";
-                      $alluser = $conn->query($req2);
+
+                        $alluser = $conn->query('SELECT * FROM test where id_labo= "$id_labo" ORDER BY id_test DESC');
+                        if(isset($_GET['search']) AND !empty($_GET['search']))
+                            {
+                              $recherche = htmlspecialchars($_GET['search']);
+                              $req2 = "SELECT * FROM test where id_labo= '$id_labo' and nom_p LIKE '%".$recherche."%' ORDER BY id_test DESC";
+                              $alluser = $conn->query($req2);
+                            }
+                        else{
+                            header("Location: labo_home.php");
+                        }
                     }
-                else{
-                    header("Location: labo_home.php");
-                }
+                
                       //Clôture de la connexion
                       $conn = null;
                     } catch (PDOException $e) {
@@ -197,45 +179,11 @@
         <div class="page-content--bgf7">
 
             <!-- STATISTIC-->
-            <section class="statistic statistic2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item statistic__item--green">
-                                <h2 class="number"><?php
-                             echo $negatif; 
-                
-                             ?></h2>
-                                <span class="desc">CAS NÉGATIF</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item statistic__item--orange">
-                                <h2 class="number"><?php
-                             echo $attente; 
-                
-                             ?></h2>
-                                <span class="desc">EN ATTENTE</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item statistic__item--red">
-                                <h2 class="number">
-                                <?php
-                             echo $positif; 
-                
-                             ?>
-                             </h2>
-                             
-                                <span class="desc">CAS POSITIF</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            
             <!-- END STATISTIC-->
 
             <!-- DATA TABLE-->
+            <br>
             <section class="p-t-20">
                 <div class="container">
                     <div class="row">
@@ -260,7 +208,6 @@
                                             <th>sexe</th>
                                             <th>date de naissance</th>
                                             <th>resultat</th>
-                                            <th>Type</th>
                                             <th ></th>
                                         </tr>
                                     </thead>
@@ -274,8 +221,6 @@
                             $sexe = $tuple['sexe'];
                             $date_naissance = $tuple['date_naissance'];
                             $resultat_p = $tuple['resultat'];
-                            $type_t = $tuple['type'];
-
 
                             echo '<tr class="tr-shadow">
                             <td>'.$nom_p.'</td>
@@ -286,30 +231,17 @@
                             
                             echo'<td>'.$date_naissance.'</td>';
                             
-                            if($resultat_p=="positif"){
+                            if($resultat_p=="prés"){
                                 echo'
                                 <td id="result">
-                                    <span class="status--waiting" style="color:red" ><b>'.$resultat_p.'</b></span>
-                                </td>';
-                            }
-                            else if($resultat_p=="negatif"){
-                                echo'
-                                <td id="result" >
-                                    <span class="status--waiting" style="color:green"><b>'.$resultat_p.'</b></span>
-                                </td>';
-                            }
-                            else if($resultat_p=="en attente"){
-                                echo'
-                                <td id="result" >
-                                    <span class="status--waiting" style="color:orange"><b>'.$resultat_p.'</b></span>
+                                    <span class="status--waiting" style="color:green" ><b>'.$resultat_p.'</b></span>
                                 </td>';
                             }else{
                                 echo'
-                                <td id="result" style="color:black">
+                                <td id="result" style="color:orange">
                                     <span class="status--waiting" ><b>'.$resultat_p.'</b></span>
                                 </td>';
                             }
-                            echo'<td>'.$type_t.' </td>';
                                 echo'<td>
                                 <div class="table-data-feature">
         
