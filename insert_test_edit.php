@@ -1,7 +1,14 @@
 <?php session_start() ?>
 <?php
 include("Auth_pub.php");
-//récuperation id test de la ligne
+//récuperation de l'avatar
+
+if(isset($_POST['valider'])){
+	$avatar = $_FILES['avatar']['name'];
+	if (move_uploaded_file($_FILES['avatar']['tmp_name'], "resultat/". $_FILES['avatar']['name'])) {
+		chmod("resultat/". $_FILES['avatar']['name'], 0644);
+	}
+}
 
 
 
@@ -35,7 +42,7 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
             $conn->query($requete_sql2);
         }
         else{
-            $requete_sql3 = 'UPDATE patient SET nbr_test=nbr_test-1 where id_p="$id_p"';
+            $requete_sql3 = 'UPDATE patient SET nbr_test=(nbr_test-1) where id_p="$id_p"';
             $conn->exec($requete_sql3);
 
             $requete_sql4 = "DELETE FROM test where id_test = '$_SESSION[id_test]'";
@@ -54,7 +61,6 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
 	$prenom_p = $_POST["prenom_p"];
 	$date_naissance = $_POST["date_naissance"];
 	$sexe = $_POST["sexe"];
-	$avatar= $_POST["avatar"];
 	$mdp = $_POST["mdp"];
 	$date_test = date('Y-m-j h:i:s');
 
@@ -136,7 +142,6 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
                                              while($tup2 = $res2->fetch(PDO::FETCH_ASSOC)){
                                                 $nbr_test= $tup2['nbr_test'];
                                                 }
-                                                $nbr_test= $nbr_test+1;
                                                 $req_sql4="UPDATE patient SET nbr_test='$nbr_test' where id_test='$_SESSION[id_test]'";
                                                 $conn->exec($req_sql4);
                                                 break;

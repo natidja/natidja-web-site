@@ -29,7 +29,8 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Créer</title>
+    <title>Créer | Natidja</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">

@@ -14,7 +14,7 @@
                         }
                         $conn = null;
                     } catch (PDOException $e) {
-                        echo "Erreur !" . $e->getMessage() . "<br/>";
+                        echo "Erreur ! " . $e->getMessage() . "<br/>";
                     }
 ?>
 
@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="account-dropdown__footer">
                                         <a href='login_labo.php ' Broken Link style="text-decoration: none;">
-                                            <i class="zmdi zmdi-power"></i>Déconnecter</a>
+                                            <i class="zmdi zmdi-power"></i>DÃ©connecter</a>
                                     </div>
                                 </div>
                             </div>

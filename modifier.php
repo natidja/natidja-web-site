@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php 
+<?php
            include("Auth_pub.php");
             try {
                 $requete_sql = "select * from labo where adresse_email ='$_SESSION[pseudo_labo]' and pwd ='$_SESSION[mdp_labo]'";
@@ -25,10 +25,10 @@ $_SESSION['id_test'] = $_POST['edit_id'];
 
 //récuperation password client avant suppression
 
-//récuperation données patient 
+//récuperation données patient
 $requete_m= "select * from test where id_test='$_SESSION[id_test]' ";
 $result_m = $conn->query($requete_m);
-    
+
 while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux associatifs
     $nom_p = $tuple['nom_p'];
     $prenom_p = $tuple['prenom_p'];
@@ -42,9 +42,9 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
             $mdp = $tuple['mdp'];
         }
 
-        
 
-    
+
+
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +59,8 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Créer</title>
+    <title>Modifier |Natidja</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -147,14 +148,14 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Modifier</h2>
-                    <form method="POST" action="insert_test_edit.php">
-                     
+                    <form method="POST" action="insert_test_edit.php" enctype="multipart/form-data">
+
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">NOM</label>
                                     <input class="input--style-4" type="text" name="nom_p" value="<?php echo $nom_p; ?>"  >
-                                    
+
                                 </div>
                             </div>
                             <div class="col-2">
@@ -170,7 +171,7 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
                                     <label class="label">DATE DE NAISSANCE</label>
                                     <div class="input-group-icon">
                                         <input class="input--style-4 js-datepicker" type="date" name="date_naissance"value="<?php echo $date_naissance; ?>">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -211,17 +212,17 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
                         </div>
                              <input type="file" name="avatar" id="avatar" class="custom-file-input">
                             <br><br>
-                            
+
 
                         <div class="p-t-15">
 
                         <?php echo '<form action="insert_test_edit.php" method="POST">
                                     <input type="hidden" name="mdp" value="'.$mdp.'">
-                                    <button class="btn btn--radius-2 btn--blue" type="submit">
+                                    <button class="btn btn--radius-2 btn--blue" type="submit" name="valider">
                                 Modifier
                             </button>
                                     </form>'; ?>
-                        
+
 
                         </div>
                     </form>
@@ -239,7 +240,7 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
                                   background: linear-gradient(top, #f3f3f3, #e3e3e3);
                                   border: 3px solid #f3f3f3;
                                   border-radius: 25px;
-                                  padding: 10px ; 
+                                  padding: 10px ;
                                   cursor: pointer;
                                   text-shadow: 1px 1px #E5E5E5;
                                   font-weight: 400;
@@ -248,7 +249,7 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
                                 .custom-file-input:hover::before {
                                   border-color: #E5E5E5;
                                 }
-                                
+
     </style>
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>

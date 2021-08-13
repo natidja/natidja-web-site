@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Labo-Home</title>
+    <title>Resultat | Natidja</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -99,7 +99,7 @@
                 <center style="margin-top:30px">
                 <?php
                   if($avatar==null) echo '<p>test : ' . $date_test . ' : en attente</p> ';
-                  else echo'<p>test : ' . $date_test . '<a href="resultat/' . $avatar . '" target="_blank"> : ' . $avatar . '</a></p> ';
+                  else echo'<p>test : ' . $date_test . '<a href="resultat/' . $avatar . '" target="_blank"> : click ici</a></p> ';
                  ?>
                 </center>
                 <?php
