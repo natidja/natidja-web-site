@@ -75,25 +75,25 @@
 
                     <div class="account-wrap">
                         <div class="account-item account-item--style2 clearfix js-item-menu">
-                            <div class="image">
+                            <!-- <div class="image">
                                 <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                            </div>
+                            </div> -->
                             <div class="content">
                                 <a class="js-acc-btn" href="#" style="text-decoration: none;"><?php echo$nom;?></a>
                             </div>
                             <div class="account-dropdown js-dropdown">
                                 <div class="info clearfix">
-                                    <div class="image">
+                                    <!-- <div class="image">
                                         <a href="#">
                                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </a>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="name">
-                                            <a href="#" style="text-decoration: none;"><?php echo$nom;?></a>
-                                        </h5>
+                                    </div> -->
+                                    <!-- <div class="content"> -->
+                                        <h4 class="name" style="font-size: 1em; font-weight: bolder;">
+                                            <?php echo$nom;?>
+                                        </h4>
                                         <span class="email"><?php echo$email;?></span>
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
 
                                 <div class="account-dropdown__body">

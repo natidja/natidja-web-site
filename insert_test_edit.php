@@ -72,7 +72,7 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
 	}
 
 	else{
-		$resultat = "pres";
+		$resultat = "pret";
 	}
 
 	if($sexe == "H"){
@@ -115,7 +115,7 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
 						$p->execute();
 				}
 				else{
-						$requete_sql11 = "INSERT INTO test (nom_p, prenom_p, date_naissance, resultat, sexe, avatar, date_test, id_labo) VALUES (:nom_p, :prenom_p, :date_naissance, 'pres', :sexe, :avatar,:date_test, :id_labo)";
+						$requete_sql11 = "INSERT INTO test (nom_p, prenom_p, date_naissance, resultat, sexe, avatar, date_test, id_labo) VALUES (:nom_p, :prenom_p, :date_naissance, 'pret', :sexe, :avatar,:date_test, :id_labo)";
 
 						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

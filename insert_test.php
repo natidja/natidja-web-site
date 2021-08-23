@@ -101,7 +101,7 @@
         <div class="card card-1">
             <center><h1 class="title">informations personnelles</h1></center><br>
             <div>
-                <h3 style="text-align:center;">www.natidja.com<br></h3>
+                <h3 style="text-align:center;">www.natidja.net<br></h3>
                 <?php
                     try{
                     include("Auth_pub.php");

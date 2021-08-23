@@ -68,14 +68,6 @@
                           <img src="images/icons/instagram.png" alt="Instagram" style="margin:0px 7.5px 0px 7.5px; height:40px; width:40px;">
                         </a>
 
-                        <a href="mailto: natidjadz@gmail.com" target="_blank">
-                          <img src="images/icons/gmail.png" alt="Google" style="margin:0px 7.5px 0px 7.5px; height:40px; width:40px;">
-                        </a>
-
-                        <a href="https://twitter.com/dja_nati" target="_blank">
-                          <img src="images/icons/twitter.png" alt="Twitter" style="margin:0px 7.5px 0px 7.5px; height:40px; width:40px;">
-                        </a>
-
                         <a href="https://www.linkedin.com/company/natidja" target="_blank">
                           <img src="images/icons/linkedin.png" alt="linkedin" style="margin:0px 7.5px 0px 7.5px; height:40px; width:40px;">
                         </a>

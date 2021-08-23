@@ -83,6 +83,7 @@
           background-color: transparent;
           text-decoration: none;
         }
+
     </style>
 
 </head>
@@ -201,7 +202,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top:30px; ">
-                      <h1 class="h3 mb-0 text-gray-800"><a href="labo_home-patients.php">Table des Tests</a></h1>
+                        <h1 class="h3 mb-0 text-gray-800"><a href="labo_home.php">Table des Patients</a></h1>
                         <a href="creat.php" alt='Broken Link ' style="color: white;">
                         <button class="au-btn au-btn-icon au-btn--green au-btn--small ">
                             <i class="zmdi zmdi-plus"></i>Ajouter</button></a>

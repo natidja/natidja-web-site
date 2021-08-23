@@ -5,8 +5,8 @@
     <title>Natidja</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
     <!--===============================================================================================-->
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -24,9 +24,10 @@
 </head>
 
 <body>
+
     <div class="limiter">
         <div class="container-login100">
-            <div class="wrap-login100" >
+            <div class="wrap-login100">
                 <div style="margin: auto;">
                     <div class="login100-pic js-tilt" data-tilt>
                         <img src="images/logo_login.png" alt="IMG">
@@ -35,18 +36,18 @@
                 <form class="login100-form validate-form" style="margin: auto;" action="result.php" method="POST">
                     <div style="height:50%;">
                         <span class="login100-form-title">
-                            <b>نتيجة الاختبار</b>
+                            <b>Résultat De Votre Test </b>
                         </span>
 
                         <div class="wrap-input100 validate-input" data-validate="un identifiant Valide est requis">
-                            <input class="input100" type="text" name="user" placeholder="رقم التسجيل" style="text-align:right" required>
+                            <input class="input100" type="text" name="user" placeholder="identifiant" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100" style="text-align:right">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </span>
                         </div>
                         <div class="wrap-input100 validate-input" data-validate="mot de passe est requis">
-                            <input class="input100" type="password" name="pass" placeholder="الرقم السري" style="text-align:right" required>
+                            <input class="input100" type="password" name="pass" placeholder="Mot de passe" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -55,20 +56,20 @@
 
                         <div class="container-login100-form-btn">
                             <button class="login100-form-btn">
-                                <b>استظهار النتيجة</b>
+                                <b>DECOUVRIR VOTRE RESULTAT</b>
                                 </button>
                         </div>
 
                         <div class="text-center " style="padding-top:60px">
                             <a class="txt2" href="login_labo.php" style="font-size:17px">
-                                التسجيل كمختبر
+                                Je suis un laboratoire
                                 <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
                 </form>
                 <div class="logo_trad">
-                    <a href="index-fr.php"><img src="images/fr-language.png" alt="langue" width="30" height="30"></a>
+                    <a href="index-ar.php"><img src="images/fr-language.png" alt="langue" width="30" height="30"></a>
                 </div>
             </div>
         </div>
