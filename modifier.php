@@ -129,7 +129,7 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
                                           <i class="zmdi zmdi-home"></i>Home</a>
                                   </div>
                                   <div class="account-dropdown__footer">
-                                      <a href='login_labo.php ' Broken Link style="text-decoration: none;">
+                                      <a href='end_session.php ' Broken Link style="text-decoration: none;">
                                           <i class="zmdi zmdi-power"></i>Déconnecter</a>
                                   </div>
                               </div>

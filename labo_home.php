@@ -136,7 +136,7 @@
                                   </div>
                                   <div class="account-dropdown__body">
                                       <div class="account-dropdown__footer">
-                                          <a href='login_labo.php' alt='Broken Link' style="text-decoration: none;">
+                                          <a href='end_session.php' alt='Broken Link' style="text-decoration: none;">
                                               <i class="zmdi zmdi-power"></i>Déconnecter</a>
                                       </div>
                                   </div>
