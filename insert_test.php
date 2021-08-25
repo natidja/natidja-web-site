@@ -29,7 +29,9 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Labo-Home</title>
+    <!-- Title Page-->
+    <title>information | Natidja</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -123,7 +125,7 @@
                 ?>
     </div>
 
-    <div style="text-align:center; margin-top:25px ">
+    <div style="text-align:center; margin-top:25px" class="hidden-print">
           <button class="btn btn-primary hidden-print" onclick="window.print()" ><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
           <a href="labo_home.php" style="margin-left:25px ;">
               <button class="btn btn-primary hidden-print" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</button>
