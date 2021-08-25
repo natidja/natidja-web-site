@@ -208,7 +208,7 @@ while($tuple = $result_m->fetch(PDO::FETCH_ASSOC)){//Retourner des tableaux asso
                                         </div>';
                                 }?>
                         </div>
-                             <input type="file" name="avatar" id="avatar" class="custom-file-input">
+                             <input type="file" name="avatar" id="avatar" class="custom-file-input"  accept=".pdf">
                             <br><br>
 
 
