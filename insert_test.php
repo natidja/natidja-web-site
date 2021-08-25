@@ -29,7 +29,6 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <!-- Title Page-->
     <title>information | Natidja</title>
     <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
 
